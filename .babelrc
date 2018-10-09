@@ -1,0 +1,16 @@
+{
+  "presets": ["env", "react"],
+  "plugins" : [
+    [
+      "module-resolver",
+      {
+        "root": "./src",
+        "alias": {
+          "components": "./src/components",
+          "containers": "./src/containers",
+          "apps": "./src/apps"
+        }
+      }      
+    ]
+  ]
+}
