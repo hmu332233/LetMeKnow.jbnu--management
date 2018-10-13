@@ -4,12 +4,19 @@ import styles from './MainApp.scss';
 
 import { Alert } from 'reactstrap';
 
+import { ToastMessage, toast, withToastify } from 'utils/toastify';
+
 class MainApp extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
     };
   }
+
+  componentDidMount() {
+    toast(ToastMessage.SUCCESS);
+  }
+
   render() {
     return (
       <div className={styles.MainApp}>
@@ -30,4 +37,4 @@ MainApp.propTypes = {
 MainApp.defaultProps = {
 };
 
-export default MainApp;
+export default withToastify(MainApp);
