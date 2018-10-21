@@ -10,6 +10,9 @@ const userWordSchema = mongoose.Schema({
     type: String,
     required:[true, 'UserWord - id is required!'],
     unique: true
+  },
+  content: {
+    type: String
   }
 });
 

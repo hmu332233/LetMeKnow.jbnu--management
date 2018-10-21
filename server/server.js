@@ -4,16 +4,16 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 
 // Database
-// const mongoUrl = process.env.MONGO_DB;
-// mongoose.Promise = global.Promise;
-// mongoose.connect(mongoUrl, { useNewUrlParser: true });
-// const db = mongoose.connection;
-// db.once('open', () => {
-//    console.log('DB connected!');
-// });
-// db.on('error', (err) => {
-//   console.log('DB ERROR:', err);
-// });
+const mongoUrl = process.env.MONGO_DB;
+mongoose.Promise = global.Promise;
+mongoose.connect(mongoUrl, { useNewUrlParser: true });
+const db = mongoose.connection;
+db.once('open', () => {
+   console.log('DB connected!');
+});
+db.on('error', (err) => {
+  console.log('DB ERROR:', err);
+});
 
 // Middlewares
 app.use(express.static('dist'));
@@ -27,9 +27,8 @@ app.use((req, res, next) => {
 });
 
 // API
-app.get('/api', (req, res) => {
-  res.send('hello, server!');
-})
+app.use('/api/user_words', require('./routes/api/userWords'));
+
 
 // Server
 const port = 3000;
