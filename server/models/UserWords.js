@@ -1,15 +1,23 @@
 const UserWords = require('../schemas/UserWords');
 
+const utils = require('../utils');
+
 const UserWordsModule = {
+  find: async (query = {}, options) => {
+    try {
+      const userWords = await UserWords.find(query, options);
+      return userWords;
+    } catch (err) {
+      throw utils.mongoFormat.error(err);
+    }
+  },
   create: async ({ id, content }) => {
-    let result;
     try {
       const newUserWord = new UserWords({ id, content });
-      result = await newUserWord.save();
+      return await newUserWord.save();
     } catch (err) {
-      throw Error(err)
+      throw utils.mongoFormat.error(err);
     }
-    return result;
   }
 }
 

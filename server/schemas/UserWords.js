@@ -6,10 +6,9 @@ const mongoose = require('mongoose');
 */
 // schema
 const userWordSchema = mongoose.Schema({
-  id: { 
+  id: {
     type: String,
-    required:[true, 'UserWord - id is required!'],
-    unique: true
+    required:[true, 'UserWord - id is required!']
   },
   content: {
     type: String

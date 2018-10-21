@@ -3,16 +3,25 @@ const router = express.Router();
 
 const UserWordsModule = require('../../models/UserWords');
 
-router.get('/', (req, res, next) => {
+const utils = require('../../utils');
+
+router.get('/', async (req, res, next) => {
+  try {
+    const result = await UserWordsModule.find();
+    res.json(utils.resultFormat.successTrue(result));
+  } catch (err) {
+    res.json(utils.resultFormat.successFalse(err, err.message));
+  }
 });
 
 router.post('/', async (req, res, next) => {
   const { id, content } = req.body;
-  const result = await UserWordsModule.create({ id, content });
-  res.json({
-    result: true,
-    data: result
-  });
+  try {
+    const result = await UserWordsModule.create({ id, content });
+    res.json(utils.resultFormat.successTrue(result));
+  } catch (err) {
+    res.json(utils.resultFormat.successFalse(err, err.message));
+  }
 });
 
 module.exports = router;
