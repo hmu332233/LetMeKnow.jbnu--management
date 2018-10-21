@@ -6,8 +6,9 @@ const UserWordsModule = require('../../models/UserWords');
 const utils = require('../../utils');
 
 router.get('/', async (req, res, next) => {
+  const { user } = req.query;
   try {
-    const result = await UserWordsModule.find();
+    const result = await UserWordsModule.find({ id: user });
     res.json(utils.resultFormat.successTrue(result));
   } catch (err) {
     res.json(utils.resultFormat.successFalse(err, err.message));

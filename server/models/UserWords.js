@@ -4,6 +4,7 @@ const utils = require('../utils');
 
 const UserWordsModule = {
   find: async (query = {}, options) => {
+    query = utils.cleanObject(query);
     try {
       const userWords = await UserWords.find(query, options);
       return userWords;
