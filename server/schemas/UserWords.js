@@ -13,6 +13,8 @@ const userWordSchema = mongoose.Schema({
   content: {
     type: String
   }
+}, {
+  timestamps: true
 });
 
 // model & export
