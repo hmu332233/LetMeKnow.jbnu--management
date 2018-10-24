@@ -2,7 +2,6 @@ const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
-const logger = require('morgan');
 
 // Database
 const mongoUrl = process.env.MONGO_DB;
@@ -30,6 +29,7 @@ app.use((req, res, next) => {
 // 개발용 log
 const node_env = process.env.NODE_ENV || 'development';
 if(node_env === 'development'){
+  const logger = require('morgan');
 	app.use(logger('dev'));
 	app.use(function (req, res, next) {
     console.log(req.query);
@@ -41,7 +41,6 @@ if(node_env === 'development'){
 
 // API
 app.use('/api/user_words', require('./routes/api/userWords'));
-
 
 // Server
 const port = 3000;

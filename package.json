@@ -6,7 +6,7 @@
   "scripts": {
     "start": "parcel index.html",
     "build": "parcel build index.html -d build --public-url ./",
-    "start-server": "node server.js"
+    "start-server": "node server/server.js"
   },
   "repository": {
     "type": "git",
