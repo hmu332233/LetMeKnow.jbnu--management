@@ -4,7 +4,7 @@ import styles from './MainApp.scss';
 
 import { Alert } from 'reactstrap';
 
-import { ToastMessage, toast, withToastify } from 'utils/toastify';
+import { ToastMessage, toast, withToastify } from 'utils/component/toastify';
 
 class MainApp extends React.Component {
   constructor(props) {

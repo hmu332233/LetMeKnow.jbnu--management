@@ -1,0 +1,1 @@
+const fetchAsyncA = async (url) => await (await fetch(url)).json()
