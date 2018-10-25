@@ -6,6 +6,8 @@ import { Alert } from 'reactstrap';
 
 import { ToastMessage, toast, withToastify } from 'utils/component/toastify';
 
+import UserWordList from 'containers/UserWordList';
+
 class MainApp extends React.Component {
   constructor(props) {
     super(props);
@@ -26,6 +28,7 @@ class MainApp extends React.Component {
         <div>
           hello, client!
         </div>
+        <UserWordList />
       </div>
     );
   }
