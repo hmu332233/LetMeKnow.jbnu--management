@@ -22,7 +22,7 @@ class UserWordList extends React.Component {
   }
 
   fetchUserWords() {
-    axios.get('/api/user_words/date/group').then(res => {
+    axios.get('/api/v1/user_words/date/group').then(res => {
       if (res.data.success) {
         this.setState({ userWords: res.data.data });
         toast(ToastMessage.FETCH_SUCCESS);

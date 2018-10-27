@@ -5,10 +5,36 @@ const utils = require('../utils');
 const moment = require('moment');
 
 const UserWordsModule = {
-  find: async (query = {}, options) => {
+  find: async (query = {}, options, isFilteredByToday) => {
     query = utils.cleanObject(query);
+    
+    if (isFilteredByToday) {
+      const start = moment().startOf('day');
+      const end = moment(start).endOf('day');
+      query.createdAt = {
+        $gte: start.toDate(),
+        $lt: end.toDate()
+      }
+    }
+
     try {
-      const userWords = await UserWords.find(query, options);
+      const userWords = await UserWords.find(query, options).sort({ createdAt: -1 });
+      return userWords;
+    } catch (err) {
+      throw utils.mongoFormat.error(err);
+    }
+  },
+  /*
+  *  특정 키워드가 포함된 userWord를 가져온다
+  *  @param {String} content 검색할 키워드
+  *  @param {Boolean} matchAll 전체 일치, 부분 일치 여부
+  */
+  findByContent: async ({ content = '', matchAll = false }) => {
+    const contentQuery = matchAll ? content : /`${content}`/;
+    try {
+      const userWords = await UserWords.find({ 
+        content: contentQuery 
+      }).sort({ createdAt: -1 });
       return userWords;
     } catch (err) {
       throw utils.mongoFormat.error(err);

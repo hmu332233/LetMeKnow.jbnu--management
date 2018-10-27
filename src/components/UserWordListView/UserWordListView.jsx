@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './UserWordListView.scss';
 
+import UserWord from 'containers/UserWord';
+
 const UserWordView = ({ userWord }) => {
   return (
     <div>{userWord.content} - {userWord.count}</div>
@@ -18,7 +20,7 @@ class UserWordListView extends React.Component {
     console.log(this.props.userWords);
     return (
       <div className={styles.UserWordListView}>
-        {this.props.userWords.map(userWord => <UserWordView userWord={userWord} />)}
+        {this.props.userWords.map(userWord => <UserWord content={userWord.content} count={userWord.count} />)}
       </div>
     );
   }
