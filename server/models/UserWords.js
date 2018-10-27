@@ -39,7 +39,7 @@ const UserWordsModule = {
             count: { $sum: 1 }
           }
         }
-      ]);
+      ]).sort({ count: -1 });
       return userWords;
     } catch (err) {
       throw utils.mongoFormat.error(err);
@@ -60,7 +60,7 @@ const UserWordsModule = {
           $gte: start.toDate(),
           $lt: end.toDate()
         }
-      });
+      }).sort({ createdAt: -1 });
       return userWords;
     } catch (err) {
       throw utils.mongoFormat.error(err);
