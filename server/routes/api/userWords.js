@@ -15,6 +15,16 @@ router.get('/', async (req, res, next) => {
   }
 });
 
+router.get('/date/group', async (req, res, next) => {
+  const { start, end } = req.query;
+  try {
+    const result = await UserWordsModule.findByDateAndGroupByContent({ start, end });
+    res.json(utils.resultFormat.successTrue(result));
+  } catch (err) {
+    res.json(utils.resultFormat.successFalse(err, err.message));
+  } 
+});
+
 router.get('/date', async (req, res, next) => {
   const { start, end } = req.query;
   try {
