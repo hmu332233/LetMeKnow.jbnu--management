@@ -4,7 +4,7 @@ import styles from './MainApp.scss';
 
 import { Alert } from 'reactstrap';
 
-import { ToastMessage, toast, withToastify } from 'utils/component/toastify';
+import { withToastify } from 'utils/component/toastify';
 
 import UserWordList from 'containers/UserWordList';
 
@@ -14,21 +14,12 @@ class MainApp extends React.Component {
     this.state = {
     };
   }
-
-  componentDidMount() {
-    toast(ToastMessage.SUCCESS);
-  }
-
   render() {
     return (
       <div className={styles.MainApp}>
-        <Alert color="primary">
-          This is a primary alert — check it out!
-        </Alert>
-        <div>
-          hello, client!
+        <div className="container">
+          <UserWordList />
         </div>
-        <UserWordList />
       </div>
     );
   }

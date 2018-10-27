@@ -38,6 +38,13 @@ const UserWordsModule = {
             _id: '$content',
             count: { $sum: 1 }
           }
+        },
+        {
+          $project: {  
+            _id: 0,
+            content: "$_id",
+            count: 1,
+         }
         }
       ]).sort({ count: -1 });
       return userWords;

@@ -4,7 +4,7 @@ import styles from './UserWordListView.scss';
 
 const UserWordView = ({ userWord }) => {
   return (
-    <div>{userWord.id} - {userWord.content}</div>
+    <div>{userWord.content} - {userWord.count}</div>
   );
 };
 
@@ -26,7 +26,10 @@ class UserWordListView extends React.Component {
 
 
 UserWordListView.propTypes = {
-  userWords: PropTypes.arrayOf(PropTypes.array) 
+  userWords: PropTypes.arrayOf(PropTypes.objectOf({
+    content: PropTypes.string,
+    count: PropTypes.number
+  })) 
 };
 UserWordListView.defaultProps = {
   userWords: []

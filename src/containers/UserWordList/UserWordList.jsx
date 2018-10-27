@@ -4,6 +4,8 @@ import styles from './UserWordList.scss';
 
 import axios from 'axios';
 
+import { ToastMessage, toast, withToastify } from 'utils/component/toastify';
+
 import UserWordListView from 'components/UserWordListView';
 
 class UserWordList extends React.Component {
@@ -12,20 +14,25 @@ class UserWordList extends React.Component {
     this.state = {
       userWords: []
     };
-    this.getUserWords = this.getUserWords.bind(this);
+    this.fetchUserWords = this.fetchUserWords.bind(this);
   }
 
-  getUserWords() {
-    axios.get('/api/user_words').then(res => {
+  componentDidMount() {
+    this.fetchUserWords();
+  }
+
+  fetchUserWords() {
+    axios.get('/api/user_words/date/group').then(res => {
       if (res.data.success) {
         this.setState({ userWords: res.data.data });
+        toast(ToastMessage.FETCH_SUCCESS);
+      } else {
+        toast(ToastMessage.FETCH_FAIL);
       }
     });
   }
 
   render() {
-    this.getUserWords();
-    console.log(this.state.userWords)
     return (
       <UserWordListView
         userWords={this.state.userWords}
