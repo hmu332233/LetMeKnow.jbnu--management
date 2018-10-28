@@ -1,0 +1,19 @@
+/* 키프레임 애니메이션*/
+@keyframes spin {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.Loader {
+  display: inline-block;
+  /* 직사각형을 만들고 */
+  width: 30px;
+  height: 30px;
+   /* border-top을 제외한 나머지에 다른색을 준다 */
+  border: 3px solid #dbe2e8;
+  border-top: 3px solid #607d8b;
+  /* border를 둥굴게 */
+  border-radius: 50%;
+  /* 키프레임 등록 : 키프레임 이름, 재생시간, 일정속도, 무한반복*/
+  animation: spin 1s linear infinite;
+}
