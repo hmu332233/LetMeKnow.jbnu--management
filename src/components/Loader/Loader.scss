@@ -4,6 +4,13 @@
     transform: rotate(360deg);
   }
 }
+.LoaderWrapper {
+  display: flex;
+  &.centered {
+    width: 100%;
+    justify-content: center;
+  }
+}
 .Loader {
   display: inline-block;
   /* 직사각형을 만들고 */

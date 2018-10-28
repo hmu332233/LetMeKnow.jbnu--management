@@ -4,12 +4,6 @@ import styles from './UserWordListView.scss';
 
 import UserWord from 'containers/UserWord';
 
-const UserWordView = ({ userWord }) => {
-  return (
-    <div>{userWord.content} - {userWord.count}</div>
-  );
-};
-
 class UserWordListView extends React.Component {
   constructor(props) {
     super(props);
