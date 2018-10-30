@@ -4,6 +4,10 @@ import styles from './UserWord.scss';
 
 import axios from 'axios';
 
+import utils from 'utils/js';
+
+import UserWordView from 'components/UserWordView';
+
 class UserWord extends React.Component {
   constructor(props) {
     super(props);
@@ -15,7 +19,7 @@ class UserWord extends React.Component {
   }
 
   searchByContent(content) {
-    axios.get(`/api/v1/user_words?content=${content}`).then(res => {
+    axios.get(`/api/v1/user_words?content=${encodeURIComponent(content)}`).then(res => {
       if (res.data.success) {
         console.log(res.data);
       }
@@ -23,22 +27,20 @@ class UserWord extends React.Component {
   }
 
   handleClick() {
-    const { content } = this.props;
-    this.searchByContent(content);
+    const { data } = this.props;
+    this.searchByContent(data.content);
   }
 
   render() {
-    const contentElement = this.props.content;
-    const countElement = this.props.count;
 
-    const userWordElements = [
-      contentElement,
-      countElement
-    ]
-
+    const views = utils.convertObjectToArrayWithKeyValue(this.props.data);
+  
     return (
-      <div className={styles.UserWordView} onClick={this.handleClick}>
-        {userWordElements}
+      <div className={styles.UserWordView}>
+        <UserWordView
+          views={views} 
+          clickHandler={this.handleClick}
+        />
       </div>
     );
   }
@@ -46,8 +48,7 @@ class UserWord extends React.Component {
 
 
 UserWord.propTypes = {
-  content: PropTypes.string,
-  count: PropTypes.number
+  data: PropTypes.object
 };
 UserWord.defaultProps = {
 };

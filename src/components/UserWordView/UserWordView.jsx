@@ -2,6 +2,16 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './UserWordView.scss';
 
+import _isEmpty from 'lodash/isEmpty';
+
+const StringView = ({ value }) => {
+  return value;
+}
+
+const LinkView = ({ value }) => {
+  return value;
+}
+
 class UserWordView extends React.Component {
   constructor(props) {
     super(props);
@@ -9,16 +19,13 @@ class UserWordView extends React.Component {
     };
   }
   render() {
-    const contentElement = this.props.content;
-    const countElement = this.props.count;
 
-    const userWordElements = [
-      contentElement,
-      countElement
-    ]
+    const userWordElements = this.props.views.map(view => {
+      return <StringView value={view.value} />
+    })
 
     return (
-      <div className={styles.UserWordView}>
+      <div className={styles.UserWordView} onClick={this.props.clickHandler}>
         {userWordElements}
       </div>
     );
@@ -27,10 +34,17 @@ class UserWordView extends React.Component {
 
 
 UserWordView.propTypes = {
-  content: PropTypes.string,
-  count: PropTypes.number
+  views: PropTypes.arrayOf(PropTypes.shape({
+    key: PropTypes.string,
+    value: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number
+    ])
+  })),
+  clickHandler: PropTypes.func
 };
 UserWordView.defaultProps = {
+  views: []
 };
 
 export default UserWordView;

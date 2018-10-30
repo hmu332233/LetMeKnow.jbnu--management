@@ -14,7 +14,7 @@ class UserWordListView extends React.Component {
     console.log(this.props.userWords);
     return (
       <div className={styles.UserWordListView}>
-        {this.props.userWords.map(userWord => <UserWord content={userWord.content} count={userWord.count} />)}
+        {this.props.userWords.map(userWord => <UserWord data={userWord} />)}
       </div>
     );
   }
@@ -22,7 +22,7 @@ class UserWordListView extends React.Component {
 
 
 UserWordListView.propTypes = {
-  userWords: PropTypes.arrayOf(PropTypes.objectOf({
+  userWords: PropTypes.arrayOf(PropTypes.shape({
     content: PropTypes.string,
     count: PropTypes.number
   })) 
