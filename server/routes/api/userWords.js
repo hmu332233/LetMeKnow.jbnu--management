@@ -1,7 +1,8 @@
 const express = require('express');
 const router = express.Router();
 
-const UserWordsModule = require('../../models/UserWords');
+const UserWordsModule = require('../../models/UserWordsWithMongoDB');
+const UserWordsWithFirebase = require('../../models/UserWordsWithFirebase');
 
 const utils = require('../../utils');
 
@@ -41,6 +42,9 @@ router.get('/date', async (req, res, next) => {
 
 router.post('/', async (req, res, next) => {
   const { id, content } = req.body;
+
+  // 임시
+  UserWordsWithFirebase.set({ id, content });
   try {
     const result = await UserWordsModule.create({ id, content });
     res.json(utils.resultFormat.successTrue(result));
