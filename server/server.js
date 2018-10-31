@@ -3,7 +3,7 @@ const app = express();
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 
-// Database
+// Database - mongo
 const mongoUrl = process.env.MONGO_DB;
 mongoose.Promise = global.Promise;
 mongoose.connect(mongoUrl, { useNewUrlParser: true });
@@ -40,7 +40,8 @@ if(node_env === 'development'){
 }
 
 // API
-app.use('/api/v1/user_words', require('./routes/api/userWords'));
+// app.use('/api/v1/user_words', require('./routes/api/userWords'));
+app.use('/api/user_words', require('./routes/api/userWords'));
 
 // Server
 const port = 3000;
