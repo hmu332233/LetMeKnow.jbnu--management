@@ -22,7 +22,7 @@ const UserWordsModule = {
     start = start && moment(start).startOf('day') || moment().startOf('day');
     end = end && moment(start).endOf('day') || moment(start).endOf('day');
  
-    const userWordSnapshot = await userWordRef.where('timestamp', '>=', start.unix()).where('timestamp', '<', end.unix()).orderBy("timestamp", "desc").get();
+    const userWordSnapshot = await userWordRef.where('timestamp', '>=', start.valueOf()).where('timestamp', '<', end.valueOf()).orderBy("timestamp", "desc").get();
 
     if (userWordSnapshot.empty) {
       return [];
