@@ -1,5 +1,6 @@
 const { firebase, db } = require('../db/firebaseInit');
 const moment = require('moment');
+const _ = require('lodash');
 
 const userWordRef = db.collection('user_words');
 
@@ -30,6 +31,28 @@ const UserWordsModule = {
 
     const data = userWordSnapshot.docs.map((docSnapshot) => docSnapshot.data());
     return data;
+  },
+  /*
+  *  특정 날짜 구역내에서 같은 단어별로 그룹화한다.
+  *  @param {Date} start 시작날짜 ex) 2018-10-24
+  *  @param {Date} end 끝 날짜 ex) 2018-10-24
+  */
+  findByDateAndGroupByContent: async ({ start , end }) => {
+    const userWords = await UserWordsModule.findByDate({ start, end });
+    const userWordGroups = _.groupBy(userWords, 'content');
+    
+    const userWordGroupArrayWithCount = [];
+    for(let key in userWordGroups) {
+      const length = userWordGroups[key].length;
+      userWordGroupArrayWithCount.push({
+        content: key,
+        count: length,
+        lastUserId: userWordGroups[key][length - 1].id,
+        lastTimestamp: userWordGroups[key][length - 1].timestamp
+      });
+    }
+
+    return _.orderBy(userWordGroupArrayWithCount, ['count', 'lastTimestamp'], ['desc', 'desc']);
   }
 };
 
