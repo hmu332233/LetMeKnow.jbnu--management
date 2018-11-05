@@ -16,7 +16,6 @@ db.on('error', (err) => {
 });
 
 // Middlewares
-app.use(express.static('dist'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use((req, res, next) => {
@@ -37,11 +36,15 @@ if(node_env === 'development'){
     console.log(req.params);
 		next();
   });
+
+  app.use(express.static('dist'));
+} else {
+  app.use(express.static('build'));
 }
 
 // API
-// app.use('/api/v1/user_words', require('./routes/api/userWords'));
-app.use('/api/user_words', require('./routes/api/userWords'));
+app.use('/api/v1/user_words', require('./routes/api/userWords'));
+// app.use('/api/user_words', require('./routes/api/userWords'));
 
 // Server
 const port = 3000;
