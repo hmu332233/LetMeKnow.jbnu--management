@@ -22,7 +22,7 @@ const UserWordsModule = {
   findByDate: async ({ start , end }) => {
     start = start && moment(start).startOf('day') || moment().startOf('day');
     end = end && moment(start).endOf('day') || moment(start).endOf('day');
- 
+
     const userWordSnapshot = await userWordRef.where('timestamp', '>=', start.valueOf()).where('timestamp', '<', end.valueOf()).orderBy("timestamp", "desc").get();
 
     if (userWordSnapshot.empty) {
@@ -47,12 +47,12 @@ const UserWordsModule = {
       userWordGroupArrayWithCount.push({
         content: key,
         count: length,
-        lastUserId: userWordGroups[key][length - 1].id,
-        lastTimestamp: userWordGroups[key][length - 1].timestamp
+        lastUserId: userWordGroups[key][0].id,
+        lastTimestamp: userWordGroups[key][0].timestamp
       });
     }
 
-    return _.orderBy(userWordGroupArrayWithCount, ['count', 'lastTimestamp'], ['desc', 'desc']);
+    return _.orderBy(userWordGroupArrayWithCount, ['count', 'lastTimestamp'], ['desc', 'age']);
   }
 };
 
