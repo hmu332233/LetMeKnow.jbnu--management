@@ -1,13 +1,13 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import styles from './UserWordList.scss';
+import React from "react";
+import PropTypes from "prop-types";
+import styles from "./UserWordList.scss";
 
-import axios from 'axios';
+import axios from "axios";
 
-import { ToastMessage, toast, withToastify } from 'utils/component/toastify';
+import { ToastMessage, toast, withToastify } from "utils/component/toastify";
 
-import Loader from 'components/Loader';
-import UserWordListView from 'components/UserWordListView';
+import LoaderBox from "components/LoaderBox";
+import UserWordListView from "components/UserWordListView";
 
 class UserWordList extends React.Component {
   constructor(props) {
@@ -24,7 +24,7 @@ class UserWordList extends React.Component {
   }
 
   fetchUserWords() {
-    axios.get('/api/v1/user_words/date/group').then(res => {
+    axios.get("/api/v1/user_words/date/group").then(res => {
       if (res.data.success) {
         this.setState({ isLoading: false, userWords: res.data.data });
         toast(ToastMessage.FETCH_SUCCESS);
@@ -35,20 +35,15 @@ class UserWordList extends React.Component {
   }
 
   render() {
-    return this.state.isLoading ? (
-      <Loader centered />
-    ) : (
-      <UserWordListView
-        userWords={this.state.userWords}
-      />
+    return (
+      <LoaderBox isLoading={this.state.isLoading} centered maxHeight maxWidth>
+        <UserWordListView userWords={this.state.userWords} />
+      </LoaderBox>
     );
   }
 }
 
-
-UserWordList.propTypes = {
-};
-UserWordList.defaultProps = {
-};
+UserWordList.propTypes = {};
+UserWordList.defaultProps = {};
 
 export default UserWordList;

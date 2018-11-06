@@ -1,0 +1,13 @@
+.LoaderBox {
+  display: flex;
+  &.maxHeight {
+    height: 100%;
+  }
+  &.maxWidth {
+    width: 100%;
+  }
+  &.cetered {
+    justify-content: center;
+    align-items: center;
+  }
+}

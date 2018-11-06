@@ -3,9 +3,6 @@ import PropTypes from 'prop-types';
 import styles from './Loader.scss';
 
 import classNames from 'classnames/bind';
-
-
-
 const cx = classNames.bind(styles);
 
 class Loader extends React.Component {
