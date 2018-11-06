@@ -28,20 +28,18 @@ class UserWord extends React.Component {
 
   handleClick() {
     const { data } = this.props;
-    this.searchByContent(data.content);
+    // this.searchByContent(data.content);
   }
 
   render() {
-
-    const views = utils.convertObjectToArrayWithKeyValue(this.props.data);
-  
     return (
-      <div className={styles.UserWordView}>
-        <UserWordView
-          views={views} 
-          clickHandler={this.handleClick}
-        />
-      </div>
+      <UserWordView
+        content={this.props.data.content}
+        count={this.props.data.count}
+        lastUserId={this.props.data.lastUserId}
+        lastTimestamp={this.props.data.lastTimestamp}
+        clickHandler={this.handleClick}
+      />
     );
   }
 }
