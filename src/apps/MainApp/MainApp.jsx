@@ -1,8 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styles from "./MainApp.scss";
-
-import { Site, Page } from "tabler-react";
+import { BrowserRouter as Router, Route, Switch  } from 'react-router-dom';
+import { Site } from "tabler-react";
 
 import { withToastify } from "utils/component/toastify";
 
@@ -16,21 +16,18 @@ class MainApp extends React.Component {
   render() {
     return (
       <div className={styles.MainApp}>
-        <Site.Wrapper
-          headerProps={{
-            href: "/",
-            alt: "MANAGEMENT",
-          }}
-          footerProps={{
-            copyright: (
-              <div>
-                Copyright © 2018 minungHan. All rights reserved.
-              </div>
-            )
-          }}
-        >
-          <UsagePage />
-        </Site.Wrapper>
+        <Site>
+          <Site.Header 
+            href={"/"}
+            alt={"MANAGEMENT"}
+          />
+          <Router>
+            <Route exact path="/" component={UsagePage} />
+          </Router>
+          <Site.Footer 
+            copyright={'Copyright © 2018 minungHan. All rights reserved.'}
+          />
+        </Site>
       </div>
     );
   }

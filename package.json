@@ -41,6 +41,7 @@
     "react": "^16.6.0",
     "react-dom": "^16.6.0",
     "react-redux": "^5.0.7",
+    "react-router-dom": "^4.3.1",
     "react-toastify": "^4.4.0",
     "redux": "^4.0.0",
     "tabler-react": "^1.21.3"
