@@ -1,0 +1,8 @@
+.UserWordTableItem {
+  white-space: nowrap;
+  &__content {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}

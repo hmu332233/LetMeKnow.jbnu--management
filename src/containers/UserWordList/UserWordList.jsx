@@ -7,7 +7,7 @@ import axios from "axios";
 import { ToastMessage, toast, withToastify } from "utils/component/toastify";
 
 import LoaderBox from "components/LoaderBox";
-import UserWordListView from "components/UserWordListView";
+import UserWordTable from "containers/UserWordTable";
 
 class UserWordList extends React.Component {
   constructor(props) {
@@ -37,7 +37,7 @@ class UserWordList extends React.Component {
   render() {
     return (
       <LoaderBox isLoading={this.state.isLoading} centered maxHeight maxWidth>
-        <UserWordListView userWords={this.state.userWords} />
+        <UserWordTable userWords={this.state.userWords} />
       </LoaderBox>
     );
   }

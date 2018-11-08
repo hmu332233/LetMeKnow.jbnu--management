@@ -2,8 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './MainApp.scss';
 
-import { Alert } from 'reactstrap';
-
 import { withToastify } from 'utils/component/toastify';
 
 import UserWordList from 'containers/UserWordList';
