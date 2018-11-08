@@ -15,8 +15,8 @@ class UserWordTableItem extends React.Component {
   render() {
     return (
       <Table.Row className={styles.UserWordTableItem}>
-        <Table.Col className={styles.UserWordTableItem__content}>{this.props.content} ({this.props.count})</Table.Col>
-        <Table.Col>{moment(this.props.lastTimestamp).calendar()}</Table.Col>
+        <Table.Col>{this.props.content} ({this.props.count})</Table.Col>
+        <Table.Col className={styles.UserWordTableItem__date}>{moment(this.props.lastTimestamp).calendar()}</Table.Col>
         <Table.Col>{this.props.lastUserId}</Table.Col>
       </Table.Row>
     );

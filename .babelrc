@@ -7,7 +7,7 @@
         "utils": "./src/utils",
         "components": "./src/components",
         "containers": "./src/containers",
-        "apps": "./src/apps"
+        "pages": "./src/pages"
       }
     }]
   ]
