@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './BasicLayout.scss';
 
-import Header from 'components/Header';
+import BasicHeader from 'containers/BasicHeader';
 import Footer from 'components/Footer';
 
 class BasicLayout extends React.Component {
@@ -14,11 +14,9 @@ class BasicLayout extends React.Component {
     return (
       <div className="page">
         <div className="page-main">
-          <Header />
+          <BasicHeader />
           <div className="my-3 my-md-5">
-            <div className="container">
-              {this.props.children}
-            </div>
+            <div className="container">{this.props.children}</div>
           </div>
         </div>
         <Footer />
