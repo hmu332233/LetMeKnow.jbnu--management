@@ -15,7 +15,7 @@ class Usage extends React.Component {
     return (
       <BasicLayout>
         <div className={styles.Usage}>
-          {/*<UserWordList />*/}
+          <UserWordList />
         </div>
       </BasicLayout>
     );
