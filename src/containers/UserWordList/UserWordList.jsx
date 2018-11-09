@@ -1,13 +1,14 @@
-import React from "react";
-import PropTypes from "prop-types";
-import styles from "./UserWordList.scss";
+import React from 'react';
+import PropTypes from 'prop-types';
+import styles from './UserWordList.scss';
 
-import axios from "axios";
+import axios from 'axios';
 
-import { ToastMessage, toast, withToastify } from "utils/component/toastify";
+import { ToastMessage, toast } from 'utils/component/toastify';
 
-import LoaderBox from "components/LoaderBox";
-import UserWordTable from "containers/UserWordTable";
+import SearchBar from 'components/SearchBar';
+import LoaderBox from 'components/LoaderBox';
+import UserWordTable from 'containers/UserWordTable';
 
 class UserWordList extends React.Component {
   constructor(props) {
@@ -24,7 +25,7 @@ class UserWordList extends React.Component {
   }
 
   fetchUserWords() {
-    axios.get("/api/v1/user_words/date/group").then(res => {
+    axios.get('/api/v1/user_words/date/group').then(res => {
       if (res.data.success) {
         this.setState({ isLoading: false, userWords: res.data.data });
         toast(ToastMessage.FETCH_SUCCESS);
@@ -37,6 +38,7 @@ class UserWordList extends React.Component {
   render() {
     return (
       <LoaderBox isLoading={this.state.isLoading} centered maxHeight maxWidth>
+        <SearchBar />
         <UserWordTable userWords={this.state.userWords} />
       </LoaderBox>
     );

@@ -4,8 +4,6 @@ import styles from './UserWordTableItem.scss';
 
 import moment from 'moment';
 
-import { Table } from "tabler-react";
-
 class UserWordTableItem extends React.Component {
   constructor(props) {
     super(props);
@@ -14,11 +12,11 @@ class UserWordTableItem extends React.Component {
   }
   render() {
     return (
-      <Table.Row className={styles.UserWordTableItem}>
-        <Table.Col>{this.props.content} ({this.props.count})</Table.Col>
-        <Table.Col className={styles.UserWordTableItem__date}>{moment(this.props.lastTimestamp).calendar()}</Table.Col>
-        <Table.Col>{this.props.lastUserId}</Table.Col>
-      </Table.Row>
+      <tr className={styles.UserWordTableItem}>
+        <th>{this.props.content} ({this.props.count})</th>
+        <th className={styles.UserWordTableItem__date}>{moment(this.props.lastTimestamp).calendar()}</th>
+        <th>{this.props.lastUserId}</th>
+      </tr>
     );
   }
 }

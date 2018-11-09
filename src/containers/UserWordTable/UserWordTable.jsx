@@ -1,8 +1,8 @@
-import React from "react";
-import PropTypes from "prop-types";
-import styles from "./UserWordTable.scss";
+import React from 'react';
+import PropTypes from 'prop-types';
+import styles from './UserWordTable.scss';
 
-import { Table } from "tabler-react";
+import { Table } from 'reactstrap';
 
 import UserWordTableItem from 'components/UserWordTableItem';
 
@@ -14,7 +14,7 @@ class UserWordTable extends React.Component {
   render() {
     return (
       <Table className={styles.UserWordTable}>
-        <Table.Body>
+        <tbody>
           {this.props.userWords.map(userWord => (
             <UserWordTableItem
               key={userWord.content}
@@ -24,19 +24,21 @@ class UserWordTable extends React.Component {
               lastTimestamp={userWord.lastTimestamp}
             />
           ))}
-        </Table.Body>
+        </tbody>
       </Table>
     );
   }
 }
 
 UserWordTable.propTypes = {
-  userWords: PropTypes.arrayOf(PropTypes.shape({
-    content: PropTypes.string,
-    count: PropTypes.number,
-    lastUserId: PropTypes.string,
-    lastTimestamp: PropTypes.number
-  }))
+  userWords: PropTypes.arrayOf(
+    PropTypes.shape({
+      content: PropTypes.string,
+      count: PropTypes.number,
+      lastUserId: PropTypes.string,
+      lastTimestamp: PropTypes.number
+    })
+  )
 };
 UserWordTable.defaultProps = {
   userWords: []

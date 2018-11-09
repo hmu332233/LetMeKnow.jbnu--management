@@ -2,9 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './Usage.scss';
 
+import BasicLayout from 'components/BasicLayout';
 import UserWordList from 'containers/UserWordList';
-
-import { Page } from "tabler-react";
 
 class Usage extends React.Component {
   constructor(props) {
@@ -14,9 +13,11 @@ class Usage extends React.Component {
   }
   render() {
     return (
-      <Page.Content className={styles.Usage}>
-        <UserWordList />
-      </Page.Content>
+      <BasicLayout>
+        <div className={styles.Usage}>
+          {/*<UserWordList />*/}
+        </div>
+      </BasicLayout>
     );
   }
 }
