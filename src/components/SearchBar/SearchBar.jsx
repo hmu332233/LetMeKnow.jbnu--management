@@ -19,7 +19,7 @@ class SearchBar extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      filter: '',
+      filter: 'content',
       value: '',
       isOpendropdown: false
     };

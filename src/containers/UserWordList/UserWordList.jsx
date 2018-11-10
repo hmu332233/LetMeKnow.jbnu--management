@@ -15,8 +15,11 @@ class UserWordList extends React.Component {
     super(props);
     this.state = {
       isLoading: true,
+      originUserWords: [],
       userWords: []
     };
+
+    this.search = this.search.bind(this);
     this.fetchUserWords = this.fetchUserWords.bind(this);
   }
 
@@ -27,7 +30,11 @@ class UserWordList extends React.Component {
   fetchUserWords() {
     axios.get('/api/v1/user_words/date/group').then(res => {
       if (res.data.success) {
-        this.setState({ isLoading: false, userWords: res.data.data });
+        this.setState({
+          isLoading: false,
+          originUserWords: res.data.data,
+          userWords: res.data.data
+        });
         toast(ToastMessage.FETCH_SUCCESS);
       } else {
         toast(ToastMessage.FETCH_FAIL);
@@ -35,12 +42,23 @@ class UserWordList extends React.Component {
     });
   }
 
+  search({ filter = 'content', value }) {
+    const { originUserWords } = this.state;
+    const filterdUserWords = originUserWords.filter(userWord => {
+      return userWord[filter].includes(value);
+    });
+
+    this.setState({
+      userWords: filterdUserWords
+    });
+  }
+
   render() {
     return (
       <LoaderBox isLoading={this.state.isLoading} centered maxHeight maxWidth>
-        <SearchBar
-          pressEnterHandler={console.log}
-        />
+        <SearchBar pressEnterHandler={({ filter, value }) => {
+          this.search({ filter, value });
+        }} />
         <UserWordTable userWords={this.state.userWords} />
       </LoaderBox>
     );
