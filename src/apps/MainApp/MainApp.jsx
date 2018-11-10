@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { withToastify } from 'utils/component/toastify';
 
 import UsagePage from 'pages/Usage';
+import ChartsPage from 'pages/Charts';
 
 class MainApp extends React.Component {
   constructor(props) {
@@ -16,7 +17,10 @@ class MainApp extends React.Component {
     return (
       <div className={styles.MainApp}>
         <Router>
-          <Route exact path="/" component={UsagePage} />
+          <React.Fragment>
+            <Route exact path="/" component={ChartsPage} />
+            <Route path="/usage" component={UsagePage} />
+          </React.Fragment>
         </Router>
       </div>
     );
