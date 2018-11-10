@@ -5,6 +5,8 @@ import styles from './Charts.scss';
 import moment from 'moment';
 import axios from 'axios';
 
+import BasicLayout from 'components/BasicLayout';
+
 class Charts extends React.Component {
   constructor(props) {
     super(props);
@@ -40,50 +42,51 @@ class Charts extends React.Component {
   }
 
   paintChart(userWords) {
-
     const start = moment('2018-11-10').startOf('day');
     const end = moment(start).endOf('day');
-    var chart = new Chartist.Line('.ct-chart', {
-      series: [
-        {
-          name: 'series-1',
-          data: userWords.map(userWord => ({
-            x: userWord.timestamp,
-            y: 1
-          }))
-        }
-      ]
-    }, {
-      axisX: {
-        type: Chartist.FixedScaleAxis,
-        low: start.valueOf(),
-        high: end.valueOf(),
-        divisor: 24,
-        labelInterpolationFnc: (value) => {
-          return moment(value).format('HH:mm');
-        }
+    var chart = new Chartist.Line(
+      '.ct-chart',
+      {
+        series: [
+          {
+            name: 'series-1',
+            data: userWords.map(userWord => ({
+              x: userWord.timestamp,
+              y: 1
+            }))
+          }
+        ]
       },
-      axisY: {
-        low: 0,
-        high: 2
+      {
+        axisX: {
+          type: Chartist.FixedScaleAxis,
+          low: start.valueOf(),
+          high: end.valueOf(),
+          divisor: 24,
+          labelInterpolationFnc: value => {
+            return moment(value).format('HH:mm');
+          }
+        },
+        axisY: {
+          low: 0,
+          high: 2
+        }
       }
-    });
+    );
   }
-  
 
   render() {
     return (
-      <div className={styles.Charts}>
-        <div className="ct-chart ct-perfect-fourth"></div>
-      </div>
+      <BasicLayout>
+        <div className={styles.Charts}>
+          <div className="ct-chart ct-perfect-fourth" />
+        </div>
+      </BasicLayout>
     );
   }
 }
 
-
-Charts.propTypes = {
-};
-Charts.defaultProps = {
-};
+Charts.propTypes = {};
+Charts.defaultProps = {};
 
 export default Charts;

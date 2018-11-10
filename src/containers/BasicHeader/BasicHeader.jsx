@@ -16,6 +16,10 @@ class BasicHeader extends React.Component {
     this.navMenus = [{
       icon: 'home',
       name: 'Usage',
+      to: '/usage'
+    }, {
+      icon: 'home',
+      name: 'Charts',
       to: '/'
     }];
 
