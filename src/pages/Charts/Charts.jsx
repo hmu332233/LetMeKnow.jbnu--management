@@ -4,6 +4,7 @@ import styles from './Charts.scss';
 
 import moment from 'moment';
 import axios from 'axios';
+import _ from 'lodash';
 
 import BasicLayout from 'components/BasicLayout';
 
@@ -21,10 +22,11 @@ class Charts extends React.Component {
 
   componentDidMount() {
     this.fetchUserWords();
+    // this.paintChart()
   }
 
   fetchUserWords() {
-    axios.get('/api/v1/user_words/date?start=2018-11-10').then(res => {
+    axios.get('/api/v1/user_words/date').then(res => {
       if (res.data.success) {
         this.setState({
           isLoading: false,
@@ -42,35 +44,20 @@ class Charts extends React.Component {
   }
 
   paintChart(userWords) {
-    const start = moment('2018-11-10').startOf('day');
-    const end = moment(start).endOf('day');
-    var chart = new Chartist.Line(
+    const convertedData = _.groupBy(userWords, userWord => moment(userWord.timestamp).format('HH'))
+  
+    const labels = Object.keys(convertedData).sort()
+    const series = [labels.map(key => convertedData[key].length)]
+
+    const chart = new Chartist.Line(
       '.ct-chart',
       {
-        series: [
-          {
-            name: 'series-1',
-            data: userWords.map(userWord => ({
-              x: userWord.timestamp,
-              y: 1
-            }))
-          }
-        ]
+        labels,
+        series
       },
       {
-        axisX: {
-          type: Chartist.FixedScaleAxis,
-          low: start.valueOf(),
-          high: end.valueOf(),
-          divisor: 24,
-          labelInterpolationFnc: value => {
-            return moment(value).format('HH:mm');
-          }
-        },
-        axisY: {
-          low: 0,
-          high: 2
-        }
+        low: 0,
+        showArea: true
       }
     );
   }
