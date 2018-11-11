@@ -19,7 +19,7 @@ class MainApp extends React.Component {
         <Router>
           <React.Fragment>
             <Route exact path="/" component={ChartsPage} />
-            <Route path="/usage" component={UsagePage} />
+            <Route exact path="/usage" component={UsagePage} />
           </React.Fragment>
         </Router>
       </div>

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './HeaderNav.scss';
 
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { Collapse } from 'reactstrap';
 
 class HeaderNav extends React.Component {
@@ -19,9 +19,9 @@ class HeaderNav extends React.Component {
               <ul className="nav nav-tabs border-0 flex-column flex-lg-row">
                 {this.props.navMenus.map(menu => (
                   <li className="nav-item" key={menu.name}>
-                    <Link to={menu.to} className="nav-link active">
+                    <NavLink exact to={menu.to} className="nav-link" activeClassName="active">
                       <i className={`fe fe-${menu.icon}`} /> {menu.name}
-                    </Link>
+                    </NavLink>
                   </li>
                 ))}
               </ul>
