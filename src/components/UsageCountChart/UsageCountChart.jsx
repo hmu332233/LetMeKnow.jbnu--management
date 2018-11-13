@@ -2,6 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './UsageCountChart.scss';
 
+import moment from 'moment';
+import _ from 'lodash';
+
 class UsageCountChart extends React.Component {
   constructor(props) {
     super(props);
@@ -30,7 +33,9 @@ class UsageCountChart extends React.Component {
       },
       {
         low: 0,
-        showArea: true
+        showArea: true,
+        height: '300px',
+        // [[‘screen and (min-width: 640px)', { showPoint: false }]]);
       }
     );
   }

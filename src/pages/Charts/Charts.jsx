@@ -2,9 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './Charts.scss';
 
-import moment from 'moment';
+import { Card, CardHeader, CardBody } from 'reactstrap';
+
 import axios from 'axios';
-import _ from 'lodash';
 
 import BasicLayout from 'components/BasicLayout';
 import UsageCountChart from 'components/UsageCountChart';
@@ -46,7 +46,14 @@ class Charts extends React.Component {
     return (
       <BasicLayout>
         <div className={styles.Charts}>
-          {this.state.isLoading || <UsageCountChart userWords={this.state.userWords} />}
+          <Card>
+            <CardHeader>
+              Hourly usage
+            </CardHeader>
+            <CardBody style={{ height: '348px' }}>
+              {this.state.isLoading || <UsageCountChart userWords={this.state.userWords} />}
+            </CardBody>
+          </Card>
         </div>
       </BasicLayout>
     );
