@@ -7,7 +7,7 @@ import { Card, CardHeader, CardBody } from 'reactstrap';
 import axios from 'axios';
 
 import BasicLayout from 'components/BasicLayout';
-import UsageCountChart from 'components/UsageCountChart';
+import HourlyUsageChartCard from 'components/HourlyUsageChartCard';
 
 class Charts extends React.Component {
   constructor(props) {
@@ -46,14 +46,7 @@ class Charts extends React.Component {
     return (
       <BasicLayout>
         <div className={styles.Charts}>
-          <Card>
-            <CardHeader>
-              Hourly usage
-            </CardHeader>
-            <CardBody style={{ height: '348px' }}>
-              {this.state.isLoading || <UsageCountChart userWords={this.state.userWords} />}
-            </CardBody>
-          </Card>
+          <HourlyUsageChartCard userWords={this.state.userWords} />
         </div>
       </BasicLayout>
     );
