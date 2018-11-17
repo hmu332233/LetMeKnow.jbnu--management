@@ -16,14 +16,23 @@ class UsageCountChart extends React.Component {
 
   componentDidMount() {
     const { userWords } = this.props;
-    this.paintChart(userWords);
+    
+    const userWordGroups = _.groupBy(userWords, userWord => moment(userWord.timestamp).format('YYYYMMDD'))
+    this.paintChart(userWordGroups);
   }
 
-  paintChart(userWords) {
+  
+  makeSeries(userWords) {
     const convertedData = _.groupBy(userWords, userWord => moment(userWord.timestamp).format('HH'))
   
-    const labels = Object.keys(convertedData).sort()
-    const series = [labels.map(key => convertedData[key].length)]
+    const labels = ['00','01','02','03','04','05','06','07','08','09','10','11','12','13','14','15','16','17','18','19','20','21','22','23'];
+    const series = labels.map(key => convertedData[key] && convertedData[key].length);
+    return series;
+  }
+
+  paintChart(userWordGroups) {
+    const userWordsList = Object.keys(userWordGroups).map(key => userWordGroups[key]);
+    const series = userWordsList.map(userWords => this.makeSeries(userWords));
 
     const chart = new Chartist.Line(
       '.ct-chart',
