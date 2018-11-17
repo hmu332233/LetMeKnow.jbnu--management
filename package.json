@@ -39,6 +39,7 @@
     "moment": "^2.22.2",
     "mongoose": "^5.3.6",
     "react": "^16.6.0",
+    "react-dates": "^18.2.2",
     "react-dom": "^16.6.0",
     "react-redux": "^5.0.7",
     "react-router-dom": "^4.3.1",
