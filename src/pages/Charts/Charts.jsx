@@ -2,12 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './Charts.scss';
 
-import { Card, CardHeader, CardBody } from 'reactstrap';
-
 import axios from 'axios';
+
+import { Row, Col } from 'reactstrap';
 
 import BasicLayout from 'components/BasicLayout';
 import HourlyUsageChartCard from 'components/HourlyUsageChartCard';
+import StatsCard from 'components/StatsCard';
 
 class Charts extends React.Component {
   constructor(props) {
@@ -31,21 +32,21 @@ class Charts extends React.Component {
           isLoading: false,
           userWords: res.data.data
         });
-
-        this.paintChart(res.data.data);
-
       } else {
-
       }
     });
   }
-
-
 
   render() {
     return (
       <BasicLayout>
         <div className={styles.Charts}>
+          <Row>
+            <Col xs="6" sm="4" lg="2">
+              <StatsCard label="calls" total={this.state.userWords.length} />
+            </Col>
+          </Row>
+
           <HourlyUsageChartCard userWords={this.state.userWords} />
         </div>
       </BasicLayout>
