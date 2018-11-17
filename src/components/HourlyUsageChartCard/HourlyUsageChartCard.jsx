@@ -15,9 +15,7 @@ class HourlyUsageChartCard extends React.PureComponent {
       <Card className={styles.HourlyUsageChartCard}>
         <CardHeader>Hourly usage</CardHeader>
         <CardBody style={{ height: "348px" }}>
-          {this.state.isLoading || (
-            <UsageCountChart userWords={this.state.userWords} />
-          )}
+          <UsageCountChart userWords={this.props.userWords} />
         </CardBody>
       </Card>
     );

@@ -46,8 +46,7 @@ class Charts extends React.Component {
               <StatsCard label="calls" total={this.state.userWords.length} />
             </Col>
           </Row>
-
-          <HourlyUsageChartCard userWords={this.state.userWords} />
+          {this.state.isLoading || <HourlyUsageChartCard userWords={this.state.userWords} />}
         </div>
       </BasicLayout>
     );

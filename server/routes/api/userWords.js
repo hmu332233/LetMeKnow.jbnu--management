@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router();
 
+const dummy = require('../../data/userwords.json').data;
+
 const UserWordsModule = require('../../models/UserWordsWithMongoDB');
 const UserWordsWithFirebase = require('../../models/UserWordsWithFirebase');
 
@@ -33,7 +35,9 @@ router.get('/date/group', async (req, res, next) => {
 router.get('/date', async (req, res, next) => {
   const { start, end } = req.query;
   try {
-    const result = await UserWordsWithFirebase.findByDate({ start, end });
+    // const result = await UserWordsWithFirebase.findByDate({ start, end });
+    const result = dummy;
+
     res.json(utils.resultFormat.successTrue(result));
   } catch (err) {
     res.json(utils.resultFormat.successFalse(err, err.message));
