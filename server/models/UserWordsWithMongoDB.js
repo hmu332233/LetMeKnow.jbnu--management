@@ -85,7 +85,7 @@ const UserWordsModule = {
   */
   findByDate: async ({ start , end }) => {
     start = start && moment(start).startOf('day') || moment().startOf('day');
-    end = end && moment(start).endOf('day') || moment(start).endOf('day');
+    end = end && moment(end).endOf('day') || moment(start).endOf('day');
 
     try {
       const userWords = await UserWords.find({
@@ -94,7 +94,13 @@ const UserWordsModule = {
           $lt: end.toDate()
         }
       }).sort({ createdAt: -1 });
-      return userWords;
+      return userWords.map(userWord => {
+        return {
+          id: userWord.id,
+          content: userWord.content,
+          timestamp: userWord.createdAt
+        };
+      });
     } catch (err) {
       throw utils.mongoFormat.error(err);
     }
