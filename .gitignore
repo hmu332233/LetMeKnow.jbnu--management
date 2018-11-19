@@ -81,5 +81,6 @@ dist
 
 package-lock.json
 
+server/data
 
 # End of https://www.gitignore.io/api/node
