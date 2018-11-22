@@ -18,7 +18,7 @@ const UserWordsModule = {
     }
 
     try {
-      const userWords = await UserWords.find(query, options).sort({ createdAt: -1 });
+      const userWords = await UserWords.find(query, options).lean().sort({ createdAt: -1 });
       return userWords;
     } catch (err) {
       throw utils.mongoFormat.error(err);
@@ -34,7 +34,7 @@ const UserWordsModule = {
     try {
       const userWords = await UserWords.find({ 
         content: contentQuery 
-      }).sort({ createdAt: -1 });
+      }).lean().sort({ createdAt: -1 });
       return userWords;
     } catch (err) {
       throw utils.mongoFormat.error(err);
@@ -47,7 +47,7 @@ const UserWordsModule = {
   */
   findByDateAndGroupByContent: async ({ start , end }) => {
     start = start && moment(start).startOf('day') || moment().startOf('day');
-    end = end && moment(start).endOf('day') || moment(start).endOf('day');
+    end = end && moment(end).endOf('day') || moment(start).endOf('day');
 
     try {
       const userWords = await UserWords.aggregate([
@@ -60,9 +60,16 @@ const UserWordsModule = {
           }
         },
         {
+          $sort: {
+            createdAt: 1
+          }
+        },
+        {
           $group: {
             _id: '$content',
-            count: { $sum: 1 }
+            count: { $sum: 1 },
+            lastUserId: { $last: "$id" },
+            lastTimestamp: { $last: "$createdAt" }
           }
         },
         {
@@ -70,6 +77,8 @@ const UserWordsModule = {
             _id: 0,
             content: "$_id",
             count: 1,
+            lastUserId: 1,
+            lastTimestamp: 1
          }
         }
       ]).sort({ count: -1 });
@@ -93,14 +102,8 @@ const UserWordsModule = {
           $gte: start.toDate(),
           $lt: end.toDate()
         }
-      }).sort({ createdAt: -1 });
-      return userWords.map(userWord => {
-        return {
-          id: userWord.id,
-          content: userWord.content,
-          timestamp: userWord.createdAt
-        };
-      });
+      }).lean().sort({ createdAt: -1 });
+      return utils.normalizeUserWords(userWords);
     } catch (err) {
       throw utils.mongoFormat.error(err);
     }

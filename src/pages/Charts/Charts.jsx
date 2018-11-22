@@ -66,21 +66,23 @@ class Charts extends React.Component {
     return (
       <BasicLayout>
         <div className={styles.Charts}>
-          <Row>
-            <DateRangePicker
-              displayFormat="YYYY-MM-DD"
-              startDate={this.state.startDate}
-              startDateId="start_date_id"
-              endDate={this.state.endDate}
-              endDateId="end_date_id"
-              onDatesChange={this.handleDatesChange}
-              focusedInput={this.state.focusedInput}
-              onFocusChange={focusedInput => this.setState({ focusedInput })}
-              minimumNights={0}
-              hideKeyboardShortcutsPanel
-              isOutsideRange={() => false}
-            />
-            <Button onClick={this.handleFetchButtonClick}>fetch!</Button>
+          <Row className="mb-3">
+            <Col>
+              <DateRangePicker
+                displayFormat="YYYY-MM-DD"
+                startDate={this.state.startDate}
+                startDateId="start_date_id"
+                endDate={this.state.endDate}
+                endDateId="end_date_id"
+                onDatesChange={this.handleDatesChange}
+                focusedInput={this.state.focusedInput}
+                onFocusChange={focusedInput => this.setState({ focusedInput })}
+                minimumNights={0}
+                hideKeyboardShortcutsPanel
+                isOutsideRange={() => false}
+              />
+              <Button className="ml-1" size="lg" onClick={this.handleFetchButtonClick}>fetch!</Button>
+            </Col>
           </Row>
 
           <Row>
