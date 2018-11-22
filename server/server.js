@@ -46,7 +46,6 @@ if(node_env === 'development'){
 app.use('/api/user_words', require('./routes/api/userWords'));
 app.use('/api/v1/user_words', require('./routes/api/userWords'));
 
-
 // Server
 const port = 3000;
 app.listen(port, () => {

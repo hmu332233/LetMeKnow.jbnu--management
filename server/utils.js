@@ -11,6 +11,16 @@ const utils = {};
 */
 utils.cleanObject = (originalObject) => _.pickBy(originalObject, _.identity);
 
+utils.normalizeUserWords = (userWords) => {
+  return userWords.map(userWord => {
+    return {
+      id: userWord.id,
+      content: userWord.content,
+      timestamp: userWord.createdAt
+    };
+  });
+}
+
 utils.resultFormat = {
   successTrue: (data) => ({
     success: true,
