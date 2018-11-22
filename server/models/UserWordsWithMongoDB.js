@@ -47,7 +47,7 @@ const UserWordsModule = {
   */
   findByDateAndGroupByContent: async ({ start , end }) => {
     start = start && moment(start).startOf('day') || moment().startOf('day');
-    end = end && moment(start).endOf('day') || moment(start).endOf('day');
+    end = end && moment(end).endOf('day') || moment(start).endOf('day');
 
     try {
       const userWords = await UserWords.aggregate([
@@ -60,9 +60,16 @@ const UserWordsModule = {
           }
         },
         {
+          $sort: {
+            createdAt: 1
+          }
+        },
+        {
           $group: {
             _id: '$content',
-            count: { $sum: 1 }
+            count: { $sum: 1 },
+            lastUserId: { $last: "$id" },
+            lastTimestamp: { $last: "$createdAt" }
           }
         },
         {
@@ -70,6 +77,8 @@ const UserWordsModule = {
             _id: 0,
             content: "$_id",
             count: 1,
+            lastUserId: 1,
+            lastTimestamp: 1
          }
         }
       ]).sort({ count: -1 });
