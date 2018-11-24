@@ -10,6 +10,7 @@ import { Row, Col, Button } from 'reactstrap';
 import BasicLayout from 'components/BasicLayout';
 import HourlyUsageChartCard from 'components/HourlyUsageChartCard';
 import StatsCard from 'components/StatsCard';
+import Loader from 'components/Loader';
 
 import moment from 'moment';
 import 'react-dates/initialize';
@@ -20,7 +21,7 @@ class Charts extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      isLoading: true,
+      isLoading: false,
       userWords: [],
       startDate: moment(),
       endDate: moment()
@@ -90,7 +91,9 @@ class Charts extends React.Component {
               <StatsCard label="calls" total={this.state.userWords.length} />
             </Col>
           </Row>
-          {this.state.isLoading || (
+          {this.state.isLoading ? (
+            <Loader />
+          ) : (
             <HourlyUsageChartCard userWords={this.state.userWords} />
           )}
         </div>
