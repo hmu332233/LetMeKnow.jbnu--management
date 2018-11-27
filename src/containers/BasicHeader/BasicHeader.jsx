@@ -21,6 +21,10 @@ class BasicHeader extends React.Component {
       icon: 'home',
       name: 'Charts',
       to: '/'
+    }, {
+      icon: 'home',
+      name: 'Week Summary',
+      to: '/summary'
     }];
 
     this.handleClickToggler = this.handleClickToggler.bind(this);
