@@ -7,6 +7,8 @@ import { withToastify } from 'utils/component/toastify';
 
 import UsagePage from 'pages/Usage';
 import ChartsPage from 'pages/Charts';
+import SummaryPage from 'pages/Summary';
+import ChatPage from 'pages/Chat';
 
 class MainApp extends React.Component {
   constructor(props) {
@@ -20,6 +22,8 @@ class MainApp extends React.Component {
           <React.Fragment>
             <Route exact path="/" component={ChartsPage} />
             <Route exact path="/usage" component={UsagePage} />
+            <Route exact path="/summary" component={SummaryPage} />
+            <Route exact path="/chat" component={ChatPage} />
           </React.Fragment>
         </Router>
       </div>

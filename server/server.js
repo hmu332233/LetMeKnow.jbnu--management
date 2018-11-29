@@ -2,16 +2,20 @@ const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+const path = require('path');
 
 // Database - mongo
 const mongoUrl = process.env.MONGO_DB;
 mongoose.Promise = global.Promise;
-mongoose.connect(mongoUrl, { useNewUrlParser: true });
+mongoose.connect(
+  mongoUrl,
+  { useNewUrlParser: true }
+);
 const db = mongoose.connection;
 db.once('open', () => {
-   console.log('DB connected!');
+  console.log('DB connected!');
 });
-db.on('error', (err) => {
+db.on('error', err => {
   console.log('DB ERROR:', err);
 });
 
@@ -27,14 +31,14 @@ app.use((req, res, next) => {
 
 // 개발용 log
 const node_env = process.env.NODE_ENV || 'development';
-if(node_env === 'development'){
+if (node_env === 'development') {
   const logger = require('morgan');
-	app.use(logger('dev'));
-	app.use(function (req, res, next) {
+  app.use(logger('dev'));
+  app.use(function(req, res, next) {
     console.log(req.query);
     console.log(req.body);
     console.log(req.params);
-		next();
+    next();
   });
 
   app.use(express.static('dist'));
@@ -45,6 +49,15 @@ if(node_env === 'development'){
 // API
 app.use('/api/user_words', require('./routes/api/userWords'));
 app.use('/api/v1/user_words', require('./routes/api/userWords'));
+app.use('/api/v1/proxy', require('./routes/api/proxy'));
+
+app.get(['/', '/usage'], (req, res) => {
+  if (node_env === 'development') {
+    res.sendFile(path.join(__dirname + '/../dist/index.html'));
+  } else {
+    res.sendFile(path.join(__dirname + '/../build/index.html'));
+  }
+});
 
 // Server
 const port = 3000;
