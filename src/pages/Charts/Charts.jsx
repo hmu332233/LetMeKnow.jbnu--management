@@ -4,6 +4,10 @@ import styles from './Charts.scss';
 
 import _ from 'lodash';
 import axios from 'axios';
+import moment from 'moment';
+import 'react-dates/initialize';
+import { DateRangePicker } from 'react-dates';
+import 'react-dates/lib/css/_datepicker.css';
 
 import { Row, Col, Button } from 'reactstrap';
 
@@ -12,10 +16,7 @@ import HourlyUsageChartCard from 'components/HourlyUsageChartCard';
 import StatsCard from 'components/StatsCard';
 import Loader from 'components/Loader';
 
-import moment from 'moment';
-import 'react-dates/initialize';
-import { DateRangePicker } from 'react-dates';
-import 'react-dates/lib/css/_datepicker.css';
+import userWordsUtils from 'utils/js/userWords.js'
 
 class Charts extends React.Component {
   constructor(props) {
@@ -89,6 +90,9 @@ class Charts extends React.Component {
           <Row>
             <Col xs="6" sm="4" lg="2">
               <StatsCard label="calls" total={this.state.userWords.length} />
+            </Col>
+            <Col xs="6" sm="4" lg="2">
+              <StatsCard label="users" total={userWordsUtils.getUniqUserId(this.state.userWords).length} />
             </Col>
           </Row>
           {this.state.isLoading ? (
