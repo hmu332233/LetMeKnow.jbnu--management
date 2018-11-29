@@ -18,13 +18,17 @@ class BasicHeader extends React.Component {
       name: 'Usage',
       to: '/usage'
     }, {
-      icon: 'home',
+      icon: 'pie-chart',
       name: 'Charts',
       to: '/'
     }, {
-      icon: 'home',
+      icon: 'book-open',
       name: 'Week Summary',
       to: '/summary'
+    }, {
+      icon: 'message-circle',
+      name: 'Chat Test',
+      to: '/chat'
     }];
 
     this.handleClickToggler = this.handleClickToggler.bind(this);
