@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import styles from './Chat.scss';
 
 import BasicLayout from 'components/BasicLayout';
+import ChatCard from 'containers/ChatCard';
 
 class Chat extends React.Component {
   constructor(props) {
@@ -13,7 +14,7 @@ class Chat extends React.Component {
     return (
       <BasicLayout>
         <div className={styles.Chat}>
-        
+          <ChatCard />
         </div>
       </BasicLayout>
     );
