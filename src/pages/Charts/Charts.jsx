@@ -4,23 +4,25 @@ import styles from './Charts.scss';
 
 import _ from 'lodash';
 import axios from 'axios';
+import moment from 'moment';
+import 'react-dates/initialize';
+import { DateRangePicker } from 'react-dates';
+import 'react-dates/lib/css/_datepicker.css';
 
 import { Row, Col, Button } from 'reactstrap';
 
 import BasicLayout from 'components/BasicLayout';
 import HourlyUsageChartCard from 'components/HourlyUsageChartCard';
 import StatsCard from 'components/StatsCard';
+import Loader from 'components/Loader';
 
-import moment from 'moment';
-import 'react-dates/initialize';
-import { DateRangePicker } from 'react-dates';
-import 'react-dates/lib/css/_datepicker.css';
+import userWordsUtils from 'utils/js/userWords.js'
 
 class Charts extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      isLoading: true,
+      isLoading: false,
       userWords: [],
       startDate: moment(),
       endDate: moment()
@@ -89,8 +91,13 @@ class Charts extends React.Component {
             <Col xs="6" sm="4" lg="2">
               <StatsCard label="calls" total={this.state.userWords.length} />
             </Col>
+            <Col xs="6" sm="4" lg="2">
+              <StatsCard label="users" total={userWordsUtils.getUniqUserId(this.state.userWords).length} />
+            </Col>
           </Row>
-          {this.state.isLoading || (
+          {this.state.isLoading ? (
+            <Loader />
+          ) : (
             <HourlyUsageChartCard userWords={this.state.userWords} />
           )}
         </div>
