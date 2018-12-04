@@ -23,14 +23,26 @@ class ChatCard extends React.Component {
   }
   handleInputKeyPress(e) {
     if (e.key === 'Enter') {
-      this.setState({ sendingMessage: '', receivedMessage: '' });
-      // this.sendMessage
+      
+      this.sendMessage();
     }
   }
 
   sendMessage() {
     const { sendingMessage } = this.state;
-    // axios.post
+    axios.post('/api/v1/proxy/message', { message: sendingMessage }).then((res) => {
+      if (res.data.success) {
+        this.setState({ 
+          sendingMessage: '',
+          receivedMessage: res.data.data.message.text
+        });
+      } else {
+        this.setState({ 
+          sendingMessage: '',
+          receivedMessage: '실패!' 
+        });
+      }
+    });
   }
 
   render() {
