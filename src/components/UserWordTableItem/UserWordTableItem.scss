@@ -1,4 +1,7 @@
 .UserWordTableItem {
+  th {
+    text-transform: unset !important;
+  }
   &__content {
 
   }

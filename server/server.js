@@ -51,7 +51,7 @@ app.use('/api/user_words', require('./routes/api/userWords'));
 app.use('/api/v1/user_words', require('./routes/api/userWords'));
 app.use('/api/v1/proxy', require('./routes/api/proxy'));
 
-app.get(['/', '/usage'], (req, res) => {
+app.get('*', (req, res) => {
   if (node_env === 'development') {
     res.sendFile(path.join(__dirname + '/../dist/index.html'));
   } else {
