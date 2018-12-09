@@ -70,7 +70,12 @@ class SearchBar extends React.PureComponent {
             isOpen={this.state.isOpendropdown}
             toggle={this.toggleDropDown}
           >
-            <DropdownToggle caret>{this.state.selectedItem.content}</DropdownToggle>
+            <DropdownToggle 
+              className={styles.SearchBar__dropdown__toggle}
+              caret
+            >
+              {this.state.selectedItem.content}
+            </DropdownToggle>
             <DropdownMenu>
               {this.SEARCH_ITEMS.map(item => (
                 <DropdownItem onClick={this.handleSelectDropdownItem} value={item.value}>{item.content}</DropdownItem>
