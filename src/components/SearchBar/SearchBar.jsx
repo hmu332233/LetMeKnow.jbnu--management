@@ -15,7 +15,7 @@ import {
   DropdownItem
 } from 'reactstrap';
 
-class SearchBar extends React.Component {
+class SearchBar extends React.PureComponent {
   constructor(props) {
     super(props);
     this.state = {
@@ -27,8 +27,11 @@ class SearchBar extends React.Component {
     this.handlePressKey = this.handlePressKey.bind(this);
     this.handleChangeInput = this.handleChangeInput.bind(this);
     this.toggleDropDown = this.toggleDropDown.bind(this);
+    this.handleSelectDropdownItem = this.handleSelectDropdownItem.bind(this)
   }
-
+  handleSelectDropdownItem(e) {
+    this.setState({ filter: e.target.value });
+  }
   handlePressKey(event) {
     if (event.key === 'Enter') {
       const data = {
@@ -58,8 +61,8 @@ class SearchBar extends React.Component {
           >
             <DropdownToggle caret>Content</DropdownToggle>
             <DropdownMenu>
-              <DropdownItem>Content</DropdownItem>
-              <DropdownItem>ID</DropdownItem>
+              <DropdownItem onClick={this.handleSelectDropdownItem} value="content">Content</DropdownItem>
+              <DropdownItem onClick={this.handleSelectDropdownItem} value="id">ID</DropdownItem>
             </DropdownMenu>
           </InputGroupButtonDropdown>
           <Input
