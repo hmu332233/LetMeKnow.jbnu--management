@@ -56,9 +56,7 @@ class UserWordList extends React.Component {
   render() {
     return (
       <LoaderBox isLoading={this.state.isLoading} centered maxHeight maxWidth>
-        <SearchBar pressEnterHandler={({ filter, value }) => {
-          this.search({ filter, value });
-        }} />
+        <SearchBar pressEnterHandler={this.search} />
         <UserWordTable userWords={this.state.userWords} />
       </LoaderBox>
     );
