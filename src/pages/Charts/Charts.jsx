@@ -82,6 +82,7 @@ class Charts extends React.Component {
                 minimumNights={0}
                 hideKeyboardShortcutsPanel
                 isOutsideRange={() => false}
+                numberOfMonths={1}
               />
               <Button className="ml-1" size="lg" onClick={this.handleFetchButtonClick}>fetch!</Button>
             </Col>

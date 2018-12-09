@@ -48,7 +48,7 @@ class ChatCard extends React.Component {
   render() {
     return (
       <Card className={styles.ChatCard}>
-        <CardBody>
+        <CardBody className={styles.ChatCard__body}>
           {this.state.receivedMessage}
         </CardBody>
         <CardFooter>
