@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './SearchBar.scss';
 
+import _find from 'lodash/find';
+
 import {
   InputGroup,
   InputGroupAddon,
@@ -15,11 +17,19 @@ import {
   DropdownItem
 } from 'reactstrap';
 
-class SearchBar extends React.Component {
+class SearchBar extends React.PureComponent {
   constructor(props) {
     super(props);
+    this.SEARCH_ITEMS = [{
+      content: 'Content',
+      value: 'content'
+    }, {
+      content: 'ID',
+      value: 'id'
+    }];
+
     this.state = {
-      filter: 'content',
+      selectedItem: this.SEARCH_ITEMS[0],
       value: '',
       isOpendropdown: false
     };
@@ -27,13 +37,17 @@ class SearchBar extends React.Component {
     this.handlePressKey = this.handlePressKey.bind(this);
     this.handleChangeInput = this.handleChangeInput.bind(this);
     this.toggleDropDown = this.toggleDropDown.bind(this);
+    this.handleSelectDropdownItem = this.handleSelectDropdownItem.bind(this)
   }
-
+  handleSelectDropdownItem(e) {
+    const selectedItem = _find(this.SEARCH_ITEMS, { value: e.target.value });
+    this.setState({ selectedItem: selectedItem || this.SEARCH_ITEMS[0] });
+  }
   handlePressKey(event) {
     if (event.key === 'Enter') {
       const data = {
         value: this.state.value,
-        filter: this.state.filter
+        filter: this.state.selectedItem.value
       };
       this.props.pressEnterHandler && this.props.pressEnterHandler(data);
     }
@@ -56,10 +70,16 @@ class SearchBar extends React.Component {
             isOpen={this.state.isOpendropdown}
             toggle={this.toggleDropDown}
           >
-            <DropdownToggle caret>Content</DropdownToggle>
+            <DropdownToggle 
+              className={styles.SearchBar__dropdown__toggle}
+              caret
+            >
+              {this.state.selectedItem.content}
+            </DropdownToggle>
             <DropdownMenu>
-              <DropdownItem>Content</DropdownItem>
-              <DropdownItem>ID</DropdownItem>
+              {this.SEARCH_ITEMS.map(item => (
+                <DropdownItem onClick={this.handleSelectDropdownItem} value={item.value}>{item.content}</DropdownItem>
+              ))}
             </DropdownMenu>
           </InputGroupButtonDropdown>
           <Input

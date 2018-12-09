@@ -44,8 +44,9 @@ class UserWordList extends React.Component {
 
   search({ filter = 'content', value }) {
     const { originUserWords } = this.state;
+    const filterName = (filter === 'id') ? 'lastUserId' : filter;
     const filterdUserWords = originUserWords.filter(userWord => {
-      return userWord[filter].includes(value);
+      return userWord[filterName].includes(value);
     });
 
     this.setState({
