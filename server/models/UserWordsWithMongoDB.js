@@ -81,7 +81,7 @@ const UserWordsModule = {
             lastTimestamp: 1
          }
         }
-      ]).sort({ count: -1 });
+      ]).sort({ count: -1, lastTimestamp: 1 });
       return userWords;
     } catch (err) {
       throw utils.mongoFormat.error(err);
