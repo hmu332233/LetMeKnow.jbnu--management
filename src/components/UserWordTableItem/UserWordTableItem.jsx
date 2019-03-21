@@ -4,21 +4,14 @@ import styles from './UserWordTableItem.scss';
 
 import moment from 'moment';
 
-class UserWordTableItem extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-    };
-  }
-  render() {
-    return (
-      <tr className={styles.UserWordTableItem}>
-        <th>{this.props.content} ({this.props.count})</th>
-        <th className={styles.UserWordTableItem__date}>{moment(this.props.lastTimestamp).calendar()}</th>
-        <th>{this.props.lastUserId}</th>
-      </tr>
-    );
-  }
+function UserWordTableItem(props) {
+  return (
+    <tr className={styles.UserWordTableItem}>
+      <th>{props.content} ({props.count})</th>
+      <th className={styles.UserWordTableItem__date}>{moment(props.lastTimestamp).calendar()}</th>
+      <th className={styles.UserWordTableItem__userId}>{props.lastUserId}</th>
+    </tr>
+  );
 }
 
 UserWordTableItem.propTypes = {
@@ -33,6 +26,7 @@ UserWordTableItem.defaultProps = {
   count: 0,
   lastUserId: '',
   lastTimestamp: '',
+  clickHandler: v => v
 };
 
-export default UserWordTableItem;
+export default React.memo(UserWordTableItem);

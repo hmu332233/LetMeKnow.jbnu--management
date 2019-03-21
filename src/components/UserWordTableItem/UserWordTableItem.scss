@@ -1,11 +1,20 @@
 .UserWordTableItem {
   th {
     text-transform: unset !important;
+    min-width: 150px;
   }
   &__content {
-
   }
   &__date {
     white-space: nowrap;
+  }
+  &__userId {
+    max-width: 395px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    @media (max-width: 767.98px) {
+      display: none;
+    }
   }
 }
