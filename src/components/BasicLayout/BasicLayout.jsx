@@ -25,4 +25,4 @@ function BasicLayout(props) {
 BasicLayout.propTypes = {};
 BasicLayout.defaultProps = {};
 
-export default BasicLayout;
+export default React.memo(BasicLayout);
