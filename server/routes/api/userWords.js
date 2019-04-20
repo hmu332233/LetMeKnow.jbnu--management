@@ -4,7 +4,7 @@ const router = express.Router();
 // const dummy = require('../../data/userwords.json').data;
 
 const UserWordsModule = require('../../models/UserWordsWithMongoDB');
-const UserWordsWithFirebase = require('../../models/UserWordsWithFirebase');
+// const UserWordsWithFirebase = require('../../models/UserWordsWithFirebase');
 
 const utils = require('../../utils');
 
@@ -49,7 +49,7 @@ router.post('/', async (req, res, next) => {
   const { id, content } = req.body;
 
   // 임시
-  UserWordsWithFirebase.set({ id, content });
+  // UserWordsWithFirebase.set({ id, content });
   try {
     const result = await UserWordsModule.create({ id, content });
     res.json(utils.resultFormat.successTrue(result));
