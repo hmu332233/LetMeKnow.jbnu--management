@@ -50,6 +50,7 @@ if (node_env === 'development') {
 app.use('/api/user_words', require('./routes/api/userWords'));
 app.use('/api/v1/user_words', require('./routes/api/userWords'));
 app.use('/api/v1/proxy', require('./routes/api/proxy'));
+app.use('/api/v1/menus', require('./routes/api/menus'));
 
 app.get('*', (req, res) => {
   if (node_env === 'development') {
