@@ -8,7 +8,7 @@ import UserWordTableItem from 'components/UserWordTableItem';
 
 function UserWordTable(props) {
   return (
-    <Table className={styles.UserWordTable}>
+    <Table className={styles.UserWordTable} hover>
       <tbody>
         {props.userWords.map(userWord => (
           <UserWordTableItem
