@@ -7,7 +7,8 @@ const BotServerApi = require('../../modules/BotServerApi');
 router.post('/message', async (req, res, next) => {
   const { message } = req.body;
   try {
-    const result = await BotServerApi.sendMessage({ message });
+    // const result = await BotServerApi.sendMessage({ message });
+    const result = { message: { text: 'message' }};
     res.json(utils.resultFormat.successTrue(result));
   } catch (err) {
     res.json(utils.resultFormat.successFalse(err, err.message));
