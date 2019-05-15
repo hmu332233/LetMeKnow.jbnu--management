@@ -3,7 +3,7 @@ const router = express.Router();
 
 // const dummy = require('../../data/userwords.json').data;
 
-const UserWordsModule = require('../../models/UserWordsWithMongoDB');
+const UserWordsModule = require('../../models/UserWords');
 
 const { format } = require('../../utils');
 

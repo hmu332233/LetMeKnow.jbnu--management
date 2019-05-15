@@ -1,10 +1,10 @@
-const UserWords = require('../schemas/UserWords');
+const { db } = require('./info');
 
-const { utils } = require('../utils');
+const { utils } = require('../../utils');
 
 const moment = require('moment');
 
-const UserWordsModule = {
+const UserWords = {
   find: async (query = {}, options, isFilteredByToday) => {
     query = utils.cleanObject(query);
     
@@ -18,7 +18,7 @@ const UserWordsModule = {
     }
 
     try {
-      const userWords = await UserWords.find(query, options).lean().sort({ createdAt: -1 });
+      const userWords = await db.user_words.find(query, options).lean().sort({ createdAt: -1 });
       return userWords;
     } catch (err) {
       throw utils.mongoFormat.error(err);
@@ -32,7 +32,7 @@ const UserWordsModule = {
   findByContent: async ({ content = '', matchAll = false }) => {
     const contentQuery = matchAll ? content : /`${content}`/;
     try {
-      const userWords = await UserWords.find({ 
+      const userWords = await db.user_words.find({ 
         content: contentQuery 
       }).lean().sort({ createdAt: -1 });
       return userWords;
@@ -50,7 +50,7 @@ const UserWordsModule = {
     end = end && moment(end).endOf('day') || moment(start).endOf('day');
 
     try {
-      const userWords = await UserWords.aggregate([
+      const userWords = await db.user_words.aggregate([
         {
           $match: {
             createdAt: {
@@ -97,7 +97,7 @@ const UserWordsModule = {
     end = end && moment(end).endOf('day') || moment(start).endOf('day');
 
     try {
-      const userWords = await UserWords.find({
+      const userWords = await db.user_words.find({
         createdAt: {
           $gte: start.toDate(),
           $lt: end.toDate()
@@ -110,7 +110,7 @@ const UserWordsModule = {
   },
   create: async ({ id, content }) => {
     try {
-      const newUserWord = new UserWords({ id, content });
+      const newUserWord = new db.user_words({ id, content });
       return await newUserWord.save();
     } catch (err) {
       throw utils.mongoFormat.error(err);
@@ -118,4 +118,4 @@ const UserWordsModule = {
   },
 }
 
-module.exports = UserWordsModule;
+module.exports = UserWords;
