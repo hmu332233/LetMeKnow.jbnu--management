@@ -6,7 +6,7 @@ const router = express.Router();
 const UserWordsModule = require('../../models/UserWordsWithMongoDB');
 // const UserWordsWithFirebase = require('../../models/UserWordsWithFirebase');
 
-const utils = require('../../utils');
+const { format } = require('../../utils');
 
 router.get('/', async (req, res, next) => {
   const { user, content } = req.query;
@@ -16,9 +16,9 @@ router.get('/', async (req, res, next) => {
       content,
     };
     const result = await UserWordsModule.find(query, null, true);
-    res.json(utils.resultFormat.successTrue(result));
+    res.json(format.response.successTrue(result));
   } catch (err) {
-    res.json(utils.resultFormat.successFalse(err, err.message));
+    res.json(format.response.successFalse(err, err.message));
   }
 });
 
@@ -26,9 +26,9 @@ router.get('/date/group', async (req, res, next) => {
   const { start, end } = req.query;
   try {
     const result = await UserWordsModule.findByDateAndGroupByContent({ start, end });
-    res.json(utils.resultFormat.successTrue(result));
+    res.json(format.response.successTrue(result));
   } catch (err) {
-    res.json(utils.resultFormat.successFalse(err, err.message));
+    res.json(format.response.successFalse(err, err.message));
   } 
 });
 
@@ -39,9 +39,9 @@ router.get('/date', async (req, res, next) => {
     const result = await UserWordsModule.findByDate({ start, end });
     // const result = await UserWordsWithFirebase.findByDate({ start, end });
     // const result = dummy;
-    res.json(utils.resultFormat.successTrue(result));
+    res.json(format.response.successTrue(result));
   } catch (err) {
-    res.json(utils.resultFormat.successFalse(err, err.message));
+    res.json(format.response.successFalse(err, err.message));
   }
 });
 
@@ -52,9 +52,9 @@ router.post('/', async (req, res, next) => {
   // UserWordsWithFirebase.set({ id, content });
   try {
     const result = await UserWordsModule.create({ id, content });
-    res.json(utils.resultFormat.successTrue(result));
+    res.json(format.response.successTrue(result));
   } catch (err) {
-    res.json(utils.resultFormat.successFalse(err, err.message));
+    res.json(format.response.successFalse(err, err.message));
   }
 });
 

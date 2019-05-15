@@ -1,6 +1,6 @@
 const UserWords = require('../schemas/UserWords');
 
-const utils = require('../utils');
+const { utils } = require('../utils');
 
 const moment = require('moment');
 

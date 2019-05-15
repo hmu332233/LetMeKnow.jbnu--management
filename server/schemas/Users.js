@@ -2,7 +2,6 @@ const mongoose = require('mongoose');
 
 /*
 *  User
-*  id {string} 카카오톡에서 넘어온 유저 고유의 id
 */
 // schema
 const userSchema = mongoose.Schema({
@@ -10,6 +9,10 @@ const userSchema = mongoose.Schema({
     type: String,
     required:[true, 'User - id is required!'],
     unique: true
+  },
+  pw: { 
+    type: String,
+    required:[true, 'User - pw is required!']
   }
 });
 
