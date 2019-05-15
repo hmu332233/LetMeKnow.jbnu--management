@@ -1,10 +1,9 @@
 const mongoose = require('mongoose');
 
-/*
-*  User
-*/
+const CONSTANTS = {};
+
 // schema
-const userSchema = mongoose.Schema({
+const schema = mongoose.Schema({
   id: { 
     type: String,
     required:[true, 'User - id is required!'],
@@ -16,6 +15,9 @@ const userSchema = mongoose.Schema({
   }
 });
 
-// model & export
-const Users = mongoose.model('users', userSchema);
-module.exports = Users;
+const model = mongoose.model('user', schema);
+
+module.exports = {
+  db: { users: model },
+  CONSTANTS
+};
