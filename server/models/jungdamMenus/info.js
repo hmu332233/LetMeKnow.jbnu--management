@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const CONSTANTS = {};
 
 /*
-*  HuMenus
+*  JungdamMenus
 *  lunch {Array} 한 주 동안의 점심 정보
 *  dinner {Array} 한 주 동안의 저녁 정보
 */

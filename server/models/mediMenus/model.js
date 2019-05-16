@@ -2,10 +2,10 @@ const { db } = require('./info');
 
 const { utils } = require('../../utils');
 
-const HuMenus = {
+const MediMenus = {
 	findOne: async function (query, { select, sort } = {}) {
 		try {
-			const menu = await db.hu_menus.findOne(query).select(select).sort(sort).lean();
+			const menu = await db.medi_menus.findOne(query).select(select).sort(sort).lean();
 			return menu;
 		} catch (err) {
 			throw utils.mongoFormat.error(err);
@@ -20,4 +20,4 @@ const HuMenus = {
 	}
 }
 
-module.exports = HuMenus;
+module.exports = MediMenus;

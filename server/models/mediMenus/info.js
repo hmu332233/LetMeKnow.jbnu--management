@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const CONSTANTS = {};
 
 /*
-*  HuMenus
+*  MediMenus
 *  lunch {Array} 한 주 동안의 점심 정보
 *  dinner {Array} 한 주 동안의 저녁 정보
 */
@@ -29,10 +29,10 @@ const schema = mongoose.Schema({
 	]
 });
 
-const model = mongoose.model('hu_menu', schema);
+const model = mongoose.model('medi_menu', schema);
 
 module.exports = {
-  db: { hu_menus: model },
+  db: { medi_menus: model },
   CONSTANTS
 };
 
