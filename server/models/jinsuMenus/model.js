@@ -1,6 +1,6 @@
 const { db } = require('./info');
 
-const { utils } = require('../../utils');
+const { format } = require('../../utils');
 
 const JinsuMenus = {
 	findOne: async function (query, { select, sort } = {}) {
@@ -8,7 +8,7 @@ const JinsuMenus = {
 			const menu = await db.jinsu_menus.findOne(query).select(select).sort(sort).lean();
 			return menu;
 		} catch (err) {
-			throw utils.mongoFormat.error(err);
+			throw format.mongo.error(err);
 		}
 	},
 	getLatestMenu: async function () {

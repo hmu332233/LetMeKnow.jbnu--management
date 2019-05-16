@@ -1,6 +1,6 @@
 const { db } = require('./info');
 
-const { utils } = require('../../utils');
+const { format } = require('../../utils');
 
 const HuMenus = {
 	findOne: async function (query, { select, sort } = {}) {
@@ -8,7 +8,7 @@ const HuMenus = {
 			const menu = await db.hu_menus.findOne(query).select(select).sort(sort).lean();
 			return menu;
 		} catch (err) {
-			throw utils.mongoFormat.error(err);
+			throw format.mongo.error(err);
 		}
 	},
 	getLatestMenu: async function () {
