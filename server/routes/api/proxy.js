@@ -1,13 +1,12 @@
 const express = require('express');
 const router = express.Router();
 
-const { format } = require('../../utils');
-const BotServerApi = require('../../modules/BotServerApi');
+const { format, botServer } = require('../../utils');
 
 router.post('/message', async (req, res, next) => {
   const { message } = req.body;
   try {
-    const result = await BotServerApi.sendMessage({ message });
+    const result = await botServer.sendMessage({ message });
     res.json(format.response.successTrue(result));
   } catch (err) {
     res.json(format.response.successFalse(err, err.message));
