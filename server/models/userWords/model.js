@@ -1,12 +1,12 @@
 const { db } = require('./info');
 
-const { utils, format } = require('../../utils');
+const { common, format } = require('../../utils');
 
 const moment = require('moment');
 
 const UserWords = {
   find: async (query = {}, options, isFilteredByToday) => {
-    query = utils.cleanObject(query);
+    query = common.cleanObject(query);
     
     if (isFilteredByToday) {
       const start = moment().startOf('day');
@@ -103,7 +103,7 @@ const UserWords = {
           $lt: end.toDate()
         }
       }).lean().sort({ createdAt: -1 });
-      return utils.normalizeUserWords(userWords);
+      return common.normalizeUserWords(userWords);
     } catch (err) {
       throw format.mongo.error(err);
     }

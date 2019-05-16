@@ -1,4 +1,4 @@
-const utils = require('./utils');
+const common = require('./common');
 const format = require('./format');
 
-module.exports = { utils, format };
+module.exports = { common, format };
