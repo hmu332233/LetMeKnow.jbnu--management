@@ -27,7 +27,7 @@ class UserWordResultCollapse extends React.Component {
   }
 
   fetchResult() {
-    axios.post('/api/v1/proxy/message', { message: this.props.sendingMessage })
+    axios.post('/api/v1/bot/message', { message: this.props.sendingMessage })
       .then((res) => {
         if (res.data.success) {
           this.setState({ 
