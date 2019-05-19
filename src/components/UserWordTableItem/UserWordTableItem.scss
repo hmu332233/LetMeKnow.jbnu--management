@@ -1,4 +1,7 @@
 .UserWordTableItem {
+  &.clickable {
+    cursor: pointer;
+  }
   th {
     text-transform: unset !important;
     min-width: 150px;

@@ -5,24 +5,17 @@ import styles from './Loader.scss';
 import classNames from 'classnames/bind';
 const cx = classNames.bind(styles);
 
-class Loader extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-    };
-  }
-  render() {
-    return (
-      <div 
-        className={cx(
-          { LoaderWrapper: true },
-          { centered: this.props.centered }
-        )
-      }>
-        <div className={styles.Loader}></div>
-      </div>
-    );
-  }
+function Loader(props) {
+  return (
+    <div 
+      className={cx(
+        { LoaderWrapper: true },
+        { centered: props.centered }
+      )
+    }>
+      <div className={styles.Loader}></div>
+    </div>
+  );
 }
 
 
@@ -33,4 +26,4 @@ Loader.defaultProps = {
   centered: false
 };
 
-export default Loader;
+export default React.memo(Loader);

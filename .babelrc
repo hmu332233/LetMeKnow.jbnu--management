@@ -5,6 +5,7 @@
       "root": ["./src"],
       "alias": {
         "utils": "./src/utils",
+        "hooks": "./src/hooks",
         "components": "./src/components",
         "containers": "./src/containers",
         "pages": "./src/pages"
