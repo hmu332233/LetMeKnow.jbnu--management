@@ -1,8 +1,8 @@
-const MediMenusModule = require('../models/MediMenus');
-const JinsuMenusModule = require('../models/JinsuMenus');
-const StudentHallMenusModule = require('../models/StudentHallMenus');
-const JungdamMenusModule = require('../models/JungdamMenus');
-const HuMenusModule = require('../models/HuMenus');
+const MediMenusModule = require('../models/mediMenus');
+const JinsuMenusModule = require('../models/jinsuMenus');
+const StudentHallMenusModule = require('../models/studentHallMenus');
+const JungdamMenusModule = require('../models/jungdamMenus');
+const HuMenusModule = require('../models/huMenus');
 
 const { format } = require('../utils');
 
