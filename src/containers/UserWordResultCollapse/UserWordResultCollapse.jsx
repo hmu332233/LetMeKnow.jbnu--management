@@ -19,7 +19,7 @@ class UserWordResultCollapse extends React.Component {
   }
 
   shouldComponentUpdate(nextProps, nextState) {
-    if (nextProps.isOpen && this.state.isLoading) {
+    if (nextProps.isOpen && nextState.isLoading) {
       this.fetchResult();
       return false;
     }
