@@ -1,4 +1,4 @@
-const UserWords = require('../models/UserWords');
+const UserWords = require('../models/userWords');
 
 const { format } = require('../utils');
 
