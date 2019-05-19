@@ -30,7 +30,7 @@ class ChatCard extends React.Component {
 
   sendMessage() {
     const { sendingMessage } = this.state;
-    axios.post('/api/v1/proxy/message', { message: sendingMessage }).then((res) => {
+    axios.post('/api/v1/bot/message', { message: sendingMessage }).then((res) => {
       if (res.data.success) {
         this.setState({ 
           sendingMessage: '',

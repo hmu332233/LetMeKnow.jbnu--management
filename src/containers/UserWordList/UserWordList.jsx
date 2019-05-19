@@ -8,7 +8,7 @@ import { ToastMessage, toast } from 'utils/component/toastify';
 
 import SearchBar from 'components/SearchBar';
 import LoaderBox from 'components/LoaderBox';
-import UserWordTable from 'containers/UserWordTable';
+import UserWordTable from 'components/UserWordTable';
 
 class UserWordList extends React.Component {
   constructor(props) {
