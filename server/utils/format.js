@@ -23,4 +23,12 @@ format.mongo = {
   })
 }
 
+format.axios = {
+  error: (err) => ({ 
+    name: 'AxiosError', 
+    code: err.code, 
+    message: err.Error 
+  })
+}
+
 module.exports = format;
