@@ -40,17 +40,13 @@ if (node_env === 'development') {
     console.log(req.params);
     next();
   });
-
   app.use(express.static('dist'));
 } else {
   app.use(express.static('build'));
 }
 
 // API
-app.use('/api/user_words', require('./routes/api/userWords'));
-app.use('/api/v1/user_words', require('./routes/api/userWords'));
-app.use('/api/v1/proxy', require('./routes/api/proxy'));
-app.use('/api/v1/menus', require('./routes/api/menus'));
+app.use('/api', require('./routes/api'));
 
 app.get('*', (req, res) => {
   if (node_env === 'development') {
