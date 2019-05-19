@@ -1,12 +1,12 @@
 const { db } = require('./info');
 
-const { utils } = require('../../utils');
+const { common, format } = require('../../utils');
 
 const moment = require('moment');
 
 const UserWords = {
   find: async (query = {}, options, isFilteredByToday) => {
-    query = utils.cleanObject(query);
+    query = common.cleanObject(query);
     
     if (isFilteredByToday) {
       const start = moment().startOf('day');
@@ -21,7 +21,7 @@ const UserWords = {
       const userWords = await db.user_words.find(query, options).lean().sort({ createdAt: -1 });
       return userWords;
     } catch (err) {
-      throw utils.mongoFormat.error(err);
+      throw format.mongo.error(err);
     }
   },
   /*
@@ -37,7 +37,7 @@ const UserWords = {
       }).lean().sort({ createdAt: -1 });
       return userWords;
     } catch (err) {
-      throw utils.mongoFormat.error(err);
+      throw format.mongo.error(err);
     }
   },
   /*
@@ -84,7 +84,7 @@ const UserWords = {
       ]).sort({ count: -1, lastTimestamp: 1 });
       return userWords;
     } catch (err) {
-      throw utils.mongoFormat.error(err);
+      throw format.mongo.error(err);
     }
   },
   /*
@@ -103,9 +103,9 @@ const UserWords = {
           $lt: end.toDate()
         }
       }).lean().sort({ createdAt: -1 });
-      return utils.normalizeUserWords(userWords);
+      return common.normalizeUserWords(userWords);
     } catch (err) {
-      throw utils.mongoFormat.error(err);
+      throw format.mongo.error(err);
     }
   },
   create: async ({ id, content }) => {
@@ -113,7 +113,7 @@ const UserWords = {
       const newUserWord = new db.user_words({ id, content });
       return await newUserWord.save();
     } catch (err) {
-      throw utils.mongoFormat.error(err);
+      throw format.mongo.error(err);
     }
   },
 }
