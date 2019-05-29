@@ -22,8 +22,9 @@ const Users = {
     }
   },
   verify: async function ({ id, pw }) {
-    const user = await this.findById({ id }, { select: { pw: 1 }});
-    return pw === user.pw;
+    const user = await this.findById({ id });
+    const isVerified = pw === user.pw;
+    return { user, isVerified };
   }
 }
 

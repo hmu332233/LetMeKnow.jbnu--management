@@ -4,6 +4,9 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const path = require('path');
 
+const config = require('./configs')
+JWT_SECRET = config.secret;
+
 // Database - mongo
 const mongoUrl = process.env.MONGO_DB;
 mongoose.Promise = global.Promise;
