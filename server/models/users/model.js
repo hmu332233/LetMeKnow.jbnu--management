@@ -4,6 +4,14 @@ const { format } = require('../../utils');
 
 const Users = {
   CONSTANTS,
+  findBy_id: async function ({ _id }, { select } = {}) {
+    try {
+      const user = await db.users.findOne({ _id }).select(select).lean();
+      return user;
+    } catch (err) {
+      throw format.mongo.error(err);
+    }
+  },
   findById: async function ({ id }, { select } = {}) {
     try {
       const user = await db.users.findOne({ id }).select(select).lean();

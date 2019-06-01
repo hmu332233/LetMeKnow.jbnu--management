@@ -16,8 +16,8 @@ exports.create = async function (req, res, next) {
 exports.signin = async function (req, res, next) {
   const { id, pw } = req.body;
   try {
-    const { success, token } = await service.auth.verifyAndReturnToken({ id, pw });
-    if (!success) {
+    const { isVerified, token } = await service.auth.verifyIdPwAndReturnToken({ id, pw });
+    if (!isVerified) {
       return res.status(403).json(format.response.successFalse(null, 'signin fail'));
     }
     res.json(format.response.successTrue(token));
