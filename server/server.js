@@ -3,6 +3,7 @@ const app = express();
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const path = require('path');
+const middleware = require('./middleware');
 
 const config = require('./configs')
 JWT_SECRET = config.secret;
@@ -51,6 +52,9 @@ if (node_env === 'development') {
 // API
 app.use('/api', require('./routes/api'));
 
+// Error handler
+app.use(middleware.error.handle);
+
 app.get('*', (req, res) => {
   if (node_env === 'development') {
     res.sendFile(path.join(__dirname + '/../dist/index.html'));
@@ -58,6 +62,7 @@ app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname + '/../build/index.html'));
   }
 });
+
 
 // Server
 const port = 3000;
