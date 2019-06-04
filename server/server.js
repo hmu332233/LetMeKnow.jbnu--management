@@ -6,10 +6,10 @@ const path = require('path');
 const middleware = require('./middleware');
 
 const config = require('./configs')
-JWT_SECRET = config.secret;
+JWT_SECRET = config.SECRET;
 
 // Database - mongo
-const mongoUrl = process.env.MONGO_DB;
+const mongoUrl = config.MONGO_DB;
 mongoose.Promise = global.Promise;
 mongoose.connect(
   mongoUrl,
@@ -34,7 +34,7 @@ app.use((req, res, next) => {
 });
 
 // 개발용 log
-const node_env = process.env.NODE_ENV || 'development';
+const node_env = config.NODE_ENV || 'development';
 if (node_env === 'development') {
   const logger = require('morgan');
   app.use(logger('dev'));
