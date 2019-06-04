@@ -2,11 +2,11 @@ const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
-const path = require('path');
 const middleware = require('./middleware');
 
 const config = require('./configs')
 JWT_SECRET = config.SECRET;
+NODE_ENV = config.NODE_ENV || 'development';
 
 // Database - mongo
 const mongoUrl = config.MONGO_DB;
@@ -34,8 +34,7 @@ app.use((req, res, next) => {
 });
 
 // 개발용 log
-const node_env = config.NODE_ENV || 'development';
-if (node_env === 'development') {
+if (NODE_ENV === 'development') {
   const logger = require('morgan');
   app.use(logger('dev'));
   app.use(function(req, res, next) {
@@ -49,20 +48,10 @@ if (node_env === 'development') {
   app.use(express.static('build'));
 }
 
-// API
+
 app.use('/api', require('./routes/api'));
-
-// Error handler
+app.use('/', require('./routes/view'));
 app.use(middleware.error.handle);
-
-app.get('*', (req, res) => {
-  if (node_env === 'development') {
-    res.sendFile(path.join(__dirname + '/../dist/index.html'));
-  } else {
-    res.sendFile(path.join(__dirname + '/../build/index.html'));
-  }
-});
-
 
 // Server
 const port = 3000;
