@@ -20,6 +20,7 @@ exports.signin = async function (req, res, next) {
     if (!isVerified) {
       return res.status(403).json(format.response.successFalse(null, 'signin fail'));
     }
+    res.cookie('x-access-token', token);
     res.json(format.response.successTrue(token));
   } catch (err) {
     res.json(format.response.successFalse(err, err.message));

@@ -1,6 +1,6 @@
 const menus = require('./menus');
-const users = require('./users');
+const auth = require('./auth');
 const userWords = require('./userWords');
 const bot = require('./bot');
 
-module.exports = { users, menus, userWords, bot };
+module.exports = { auth, menus, userWords, bot };
