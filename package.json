@@ -36,7 +36,7 @@
     "express": "^4.16.3",
     "lodash": "^4.17.11",
     "moment": "^2.22.2",
-    "mongoose": "^5.3.6",
+    "mongoose": "^5.5.12",
     "react": "^16.8.4",
     "react-dates": "^18.2.2",
     "react-dom": "^16.8.4",
