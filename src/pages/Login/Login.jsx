@@ -21,7 +21,9 @@ class Login extends React.Component {
   render() {
     return (
       <SingleLayout>
-        <LoginForm buttonClickHandler={this.handleButtonClick} />
+        <div className="col-login mx-auto">
+          <LoginForm buttonClickHandler={this.handleButtonClick} />
+        </div>
       </SingleLayout>
     );
   }

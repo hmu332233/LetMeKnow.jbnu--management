@@ -31,7 +31,6 @@ function LoginForm(props) {
             type="text"
             name="id"
             id="LoginForm__id"
-            placeholder="with a placeholder"
             value={id}
             onChange={onChangeId}
           />
@@ -42,7 +41,6 @@ function LoginForm(props) {
             type="password"
             name="password"
             id="LoginForm__password"
-            placeholder="password placeholder"
             value={password}
             onChange={onChangePassword}
           />
