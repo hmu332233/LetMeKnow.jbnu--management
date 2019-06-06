@@ -9,6 +9,7 @@ import UsagePage from 'pages/Usage';
 import ChartsPage from 'pages/Charts';
 import SummaryPage from 'pages/Summary';
 import ChatPage from 'pages/Chat';
+import LoginPage from 'pages/Login';
 
 class MainApp extends React.Component {
   constructor(props) {
@@ -24,6 +25,7 @@ class MainApp extends React.Component {
             <Route exact path="/usage" component={UsagePage} />
             <Route exact path="/summary" component={SummaryPage} />
             <Route exact path="/chat" component={ChatPage} />
+            <Route exact path="/login" component={LoginPage} />
           </React.Fragment>
         </Router>
       </div>
