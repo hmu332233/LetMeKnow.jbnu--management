@@ -40,7 +40,7 @@
     "moment": "^2.22.2",
     "mongoose": "^5.5.14",
     "react": "^16.8.4",
-    "react-dates": "^20.2.1",
+    "react-dates": "^20.2.2",
     "react-dom": "^16.8.4",
     "react-redux": "^7.0.3",
     "react-router-dom": "^5.0.1",
