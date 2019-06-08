@@ -53,7 +53,7 @@ class Charts extends React.Component {
       start: startDate && startDate.format('YYYYMMDD'),
       end: endDate && endDate.format('YYYYMMDD')
     };
-    axios.get('/api/v1/user_words/date', { params }).then(res => {
+    axios.get('/api/v1/user_words/date', { params }, { withCredentials: true }).then(res => {
       if (res.data.success) {
         this.setState({
           isLoading: false,
