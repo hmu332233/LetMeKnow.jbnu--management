@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser')
 const middleware = require('./middleware');
 
 const config = require('./configs')
@@ -24,6 +25,7 @@ db.on('error', err => {
 });
 
 // Middlewares
+app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use((req, res, next) => {
@@ -48,6 +50,7 @@ if (NODE_ENV === 'development') {
   app.use(express.static('build'));
 }
 
+// const { common } = require('utils');
 
 app.use('/api', require('./routes/api'));
 app.use('/', require('./routes/view'));
