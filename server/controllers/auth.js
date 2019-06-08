@@ -1,7 +1,7 @@
 const Users = require('../models/users');
 const service = require('../services');
 
-const { format } = require('../utils');
+const { format, error } = require('../utils');
 
 exports.create = async function (req, res, next) {
   const { id, pw, level } = req.body;
@@ -18,7 +18,7 @@ exports.signin = async function (req, res, next) {
   try {
     const { isVerified, token } = await service.auth.verifyIdPwAndReturnToken({ id, pw });
     if (!isVerified) {
-      return res.status(403).json(format.response.successFalse(null, 'signin fail'));
+      throw error.unauthenticated();
     }
     res.cookie('x-access-token', token);
     res.json(format.response.successTrue(token));

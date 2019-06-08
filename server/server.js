@@ -50,8 +50,6 @@ if (NODE_ENV === 'development') {
   app.use(express.static('build'));
 }
 
-// const { common } = require('utils');
-
 app.use('/api', require('./routes/api'));
 app.use('/', require('./routes/view'));
 app.use(middleware.error.handle);

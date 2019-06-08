@@ -1,4 +1,4 @@
 exports.unauthenticated  = () => ({
   code: 401,
-  message: 'unauthenticated'
+  message: 'unauthenticated',
 });

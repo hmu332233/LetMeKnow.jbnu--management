@@ -31,6 +31,11 @@ const Users = {
   },
   verify: async function ({ id, pw }) {
     const user = await this.findById({ id });
+
+    if (!user) {
+      return { isVerified: false };
+    }
+
     const isVerified = pw === user.pw;
     return { user, isVerified };
   }
