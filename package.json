@@ -4,8 +4,8 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "start": "parcel index.html",
-    "build": "parcel build index.html -d build --public-url ./",
+    "start": "parcel index.html --public-url ./assets",
+    "build": "parcel build index.html -d build --public-url ./assets",
     "start-server": "node server/server.js"
   },
   "repository": {

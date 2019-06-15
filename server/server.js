@@ -45,9 +45,9 @@ if (NODE_ENV === 'development') {
     console.log(req.params);
     next();
   });
-  app.use(express.static('dist'));
+  app.use('/assets', express.static('dist'));
 } else {
-  app.use(express.static('build'));
+  app.use('/assets', express.static('build'));
 }
 
 app.use('/api', require('./routes/api'));
