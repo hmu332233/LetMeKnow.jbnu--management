@@ -1250,4 +1250,4 @@ module.exports={ChatCard__body:"_ChatCard__body_3ef34"};
 },{"./MainApp":"JNED"}],"H99C":[function(require,module,exports) {
 "use strict";var e=a(require("react")),r=a(require("react-dom"));require("tabler-react/dist/Tabler.css");var t=a(require("./apps/MainApp"));function a(e){return e&&e.__esModule?e:{default:e}}r.default.render(e.default.createElement(t.default,null),document.getElementById("app"));
 },{"react":"HdMw","react-dom":"X9zx","tabler-react/dist/Tabler.css":"Y5/t","./apps/MainApp":"15pk"}]},{},["H99C"], null)
-//# sourceMappingURL=src.228c1e3c.js.map
+//# sourceMappingURL=assets/src.3d70d931.js.map
