@@ -1,5 +1,4 @@
 const UserWords = require('../models/userWords');
-
 const { format } = require('../utils');
 
 exports.search = async function (req, res, next) {

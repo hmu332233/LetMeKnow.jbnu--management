@@ -2,10 +2,15 @@ const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
-const path = require('path');
+const cookieParser = require('cookie-parser')
+const middleware = require('./middleware');
+
+const config = require('./configs')
+JWT_SECRET = config.SECRET;
+NODE_ENV = config.NODE_ENV || 'development';
 
 // Database - mongo
-const mongoUrl = process.env.MONGO_DB;
+const mongoUrl = config.MONGO_DB;
 mongoose.Promise = global.Promise;
 mongoose.connect(
   mongoUrl,
@@ -20,6 +25,7 @@ db.on('error', err => {
 });
 
 // Middlewares
+app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use((req, res, next) => {
@@ -30,8 +36,7 @@ app.use((req, res, next) => {
 });
 
 // 개발용 log
-const node_env = process.env.NODE_ENV || 'development';
-if (node_env === 'development') {
+if (NODE_ENV === 'development') {
   const logger = require('morgan');
   app.use(logger('dev'));
   app.use(function(req, res, next) {
@@ -40,21 +45,14 @@ if (node_env === 'development') {
     console.log(req.params);
     next();
   });
-  app.use(express.static('dist'));
+  app.use('/assets', express.static('dist'));
 } else {
-  app.use(express.static('build'));
+  app.use('/assets', express.static('build'));
 }
 
-// API
 app.use('/api', require('./routes/api'));
-
-app.get('*', (req, res) => {
-  if (node_env === 'development') {
-    res.sendFile(path.join(__dirname + '/../dist/index.html'));
-  } else {
-    res.sendFile(path.join(__dirname + '/../build/index.html'));
-  }
-});
+app.use('/', require('./routes/view'));
+app.use(middleware.error.handle);
 
 // Server
 const port = 3000;

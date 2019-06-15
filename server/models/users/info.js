@@ -1,6 +1,11 @@
 const mongoose = require('mongoose');
 
-const CONSTANTS = {};
+const CONSTANTS = {
+  LEVEL: {
+    ADMIN: 'admin',
+    BASIC: 'basic'
+  },
+};
 
 // schema
 const schema = mongoose.Schema({
@@ -12,6 +17,10 @@ const schema = mongoose.Schema({
   pw: { 
     type: String,
     required:[true, 'User - pw is required!']
+  },
+  level: {
+    type: String,
+    default: CONSTANTS.LEVEL.BASIC
   }
 });
 
