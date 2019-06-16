@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import styles from './Settings.scss';
 
 import BasicLayout from 'components/BasicLayout';
+import UseDbSwitchCardControl from 'containers/UseDbSwitchCardControl';
 
 class Settings extends React.Component {
   constructor(props) {
@@ -10,11 +11,12 @@ class Settings extends React.Component {
     this.state = {
     };
   }
+
   render() {
     return (
       <BasicLayout>
         <div className={styles.Settings}>
-          셋팅 페이지
+          <UseDbSwitchCardControl />
         </div>
       </BasicLayout>
     );

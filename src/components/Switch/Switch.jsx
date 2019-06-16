@@ -4,9 +4,9 @@ import styles from './Switch.scss';
 
 function Switch(props) {
   return (
-    <label className="custom-switch" onClick={props.toggle}>
+    <label className="custom-switch">
       <input type="checkbox" name="custom-switch-checkbox" className="custom-switch-input" checked={props.value} />
-      <span className="custom-switch-indicator"></span>
+      <span className="custom-switch-indicator" onClick={props.toggle}></span>
     </label>
   );
 }
