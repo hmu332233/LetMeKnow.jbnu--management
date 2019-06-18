@@ -51,3 +51,18 @@ exports.toggleUseDb = async ({ type }) => {
     throw format.axios.error(err);
   }
 }
+
+exports.getUseDbState = async () => {
+  try {
+    const res = await axios({
+      method: 'get',
+      url: `${BOT_SERVER_HOST}/api/menu_domitory/use_db`,
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
+    return res.data.result;
+  } catch (err) {
+    throw format.axios.error(err);
+  }
+}
