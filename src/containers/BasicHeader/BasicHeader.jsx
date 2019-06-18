@@ -30,9 +30,9 @@ class BasicHeader extends React.Component {
       name: 'Chat Test',
       to: '/chat'
     }, {
-      icon: 'message-circle',
-      name: 'Chat Test',
-      to: '/login'
+      icon: 'settings',
+      name: 'Settings',
+      to: '/settings'
     }];
 
     this.handleClickToggler = this.handleClickToggler.bind(this);
