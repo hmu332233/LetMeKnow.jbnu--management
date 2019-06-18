@@ -2,11 +2,19 @@ const axios = require('axios');
 
 const BOT_SERVER_HOST = process.env.BOT_SERVER_HOST;
 
-const format = require('./format')
+const format = require('./format');
 
-const botServer = {};
+exports.CONSTANTS = {
+  TYPE: {
+    MEDI: 'medi',
+    HU: 'hu',
+    JUNGDAM: 'jungdam',
+    JINSU: 'jinsu',
+    STUDENT_HALL: 'student_hall'
+  }
+}
 
-botServer.sendMessage = async ({ message }) => {
+exports.sendMessage = async ({ message }) => {
   try {
     const res = await axios({
       method: 'post',
@@ -29,4 +37,17 @@ botServer.sendMessage = async ({ message }) => {
   }
 };
 
-module.exports = botServer;
+exports.toggleUseDb = async ({ type }) => {
+  try {
+    const res = await axios({
+      method: 'put',
+      url: `${BOT_SERVER_HOST}/api/menu_domitory/${type}/use_db`,
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
+    return res.data;
+  } catch (err) {
+    throw format.axios.error(err);
+  }
+}
