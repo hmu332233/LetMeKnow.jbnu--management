@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './UseDbSwitchCardControl.scss';
 
+import axios from 'axios';
+
 import UseDbSwitchCard from 'components/UseDbSwitchCard';
 
 function toggleSwitch(type) {
@@ -28,23 +30,53 @@ class UseDbSwitchCardControl extends React.Component {
   }
 
   toggleMedi() {
-    this.setState(toggleSwitch('medi'));
+    axios
+      .put('/api/v1/bot/use_db', { type: 'medi' })
+      .then(res => {
+        if (res.data.success) {
+          this.setState(toggleSwitch('medi'));
+        }
+      });
   }
 
   toggleHu() {
-    this.setState(toggleSwitch('hu'));
+    axios
+      .put('/api/v1/bot/use_db', { type: 'medi' })
+      .then(res => {
+        if (res.data.success) {
+          this.setState(toggleSwitch('hu'));
+        }
+      });
   }
 
   toggleJungdam() {
-    this.setState(toggleSwitch('jungdam'));
+    axios
+      .put('/api/v1/bot/use_db', { type: 'medi' })
+      .then(res => {
+        if (res.data.success) {
+          this.setState(toggleSwitch('jungdam'));
+        }
+      });
   }
 
   toggleJinsu() {
-    this.setState(toggleSwitch('jinsu'));
+    axios
+      .put('/api/v1/bot/use_db', { type: 'medi' })
+      .then(res => {
+        if (res.data.success) {
+          this.setState(toggleSwitch('jinsu'));
+        }
+      });
   }
 
   toggleStudentHall() {
-    this.setState(toggleSwitch('studentHall'));
+    axios
+      .put('/api/v1/bot/use_db', { type: 'medi' })
+      .then(res => {
+        if (res.data.success) {
+          this.setState(toggleSwitch('studentHall'));
+        }
+      });
   }
 
   render() {
