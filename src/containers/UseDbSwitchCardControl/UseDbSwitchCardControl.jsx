@@ -14,7 +14,7 @@ class UseDbSwitchCardControl extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      isLoading: false,
+      isLoading: true,
       medi: false,
       hu: false,
       jungdam: false,
@@ -22,11 +22,27 @@ class UseDbSwitchCardControl extends React.Component {
       studentHall: false
     };
 
+    this.fetchUseDb = this.fetchUseDb.bind(this)
     this.toggleMedi = this.toggleMedi.bind(this);
     this.toggleHu = this.toggleHu.bind(this);
     this.toggleJungdam = this.toggleJungdam.bind(this);
     this.toggleJinsu = this.toggleJinsu.bind(this);
     this.toggleStudentHall = this.toggleStudentHall.bind(this);
+  }
+
+  componentDidMount() {
+    this.fetchUseDb();
+  }
+
+  fetchUseDb() {
+    axios
+      .get('/api/v1/bot/use_db')
+      .then(res => {
+        if (res.data.success) {
+          const { medi, hu, jungdam, jinsu, studentHall } = res.data.data;
+          this.setState({ medi, hu, jungdam, jinsu, studentHall, isLoading: false });
+        }
+      });
   }
 
   toggleMedi() {
@@ -41,7 +57,7 @@ class UseDbSwitchCardControl extends React.Component {
 
   toggleHu() {
     axios
-      .put('/api/v1/bot/use_db', { type: 'medi' })
+      .put('/api/v1/bot/use_db', { type: 'hu' })
       .then(res => {
         if (res.data.success) {
           this.setState(toggleSwitch('hu'));
@@ -51,7 +67,7 @@ class UseDbSwitchCardControl extends React.Component {
 
   toggleJungdam() {
     axios
-      .put('/api/v1/bot/use_db', { type: 'medi' })
+      .put('/api/v1/bot/use_db', { type: 'jungdam' })
       .then(res => {
         if (res.data.success) {
           this.setState(toggleSwitch('jungdam'));
@@ -61,7 +77,7 @@ class UseDbSwitchCardControl extends React.Component {
 
   toggleJinsu() {
     axios
-      .put('/api/v1/bot/use_db', { type: 'medi' })
+      .put('/api/v1/bot/use_db', { type: 'jinsu' })
       .then(res => {
         if (res.data.success) {
           this.setState(toggleSwitch('jinsu'));
@@ -71,7 +87,7 @@ class UseDbSwitchCardControl extends React.Component {
 
   toggleStudentHall() {
     axios
-      .put('/api/v1/bot/use_db', { type: 'medi' })
+      .put('/api/v1/bot/use_db', { type: 'student_hall' })
       .then(res => {
         if (res.data.success) {
           this.setState(toggleSwitch('studentHall'));
