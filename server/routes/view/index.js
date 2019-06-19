@@ -12,7 +12,7 @@ router.get(['/login'], (req, res) => {
   }
 });
 
-router.get(['/', '/usage', '/summary', '/chat'], middleware.auth.checkView(), (req, res) => {
+router.get(['/', '/usage', '/summary', '/chat', '/settings'], middleware.auth.checkView(), (req, res) => {
   if (NODE_ENV === 'development') {
     res.sendFile(path.join(__dirname + './../../../dist/index.html'));
   } else {
