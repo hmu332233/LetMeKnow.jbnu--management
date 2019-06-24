@@ -39,8 +39,8 @@ class UseDbSwitchCardControl extends React.Component {
       .get('/api/v1/bot/use_db')
       .then(res => {
         if (res.data.success) {
-          const { medi, hu, jungdam, jinsu, studentHall } = res.data.data;
-          this.setState({ medi, hu, jungdam, jinsu, studentHall, isLoading: false });
+          const { medi, hu, jungdam, jinsu, student_hall } = res.data.data;
+          this.setState({ medi, hu, jungdam, jinsu, studentHall: student_hall, isLoading: false });
         }
       });
   }
