@@ -21,7 +21,7 @@
   "homepage": "https://github.com/hmu332233/LetMeKnow.jbnu-management#readme",
   "devDependencies": {
     "@babel/core": "^7.5.5",
-    "@babel/preset-env": "^7.4.5",
+    "@babel/preset-env": "^7.5.5",
     "@babel/preset-react": "^7.0.0",
     "autoprefixer": "^9.6.0",
     "babel-plugin-module-resolver": "^3.1.1",
