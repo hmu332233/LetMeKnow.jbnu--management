@@ -6,9 +6,9 @@ import { Input as ReactstrapInput } from 'reactstrap';
 
 function Input({ nextInput, onKeyUp, ...props}) {
   const handleKeyUp = e => {
-    if (e.keyCode === 13 && nextInput) {
-      nextInput.current.focus();
-      onKeyUp && onKeyUp(e);
+    if (e.keyCode === 13) {
+      nextInput && nextInput.current.focus();
+      onKeyUp && onKeyUp(e);  
     }
   }
   return (

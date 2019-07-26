@@ -23,6 +23,12 @@ function LoginForm(props) {
     props.buttonClickHandler({ id, password });
   };
 
+  const handleKeyUp = (e) => {
+    if (e.keyCode === 13) {
+      handleButtonClick();
+    }
+  }
+
   return (
     <Card className={classnames(styles.LoginForm, props.className)}>
       <CardBody>
@@ -46,6 +52,7 @@ function LoginForm(props) {
             value={password}
             onChange={onChangePassword}
             innerRef={passwordRef}
+            onKeyUp={handleKeyUp}
           />
         </FormGroup>
         <Button onClick={handleButtonClick}>로그인</Button>
