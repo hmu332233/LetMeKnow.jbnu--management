@@ -4,7 +4,7 @@ const Users = require('../models/users');
 
 const { format } = require('../utils');
 
-exports.verifyIdPwAndReturnToken = async function ({ id, pw }) {
+exports.verifyIdPwAndReturnToken = async ({ id, pw }) => {
   const { user, isVerified } = await Users.verify({ id, pw });
   if (!isVerified) {
     return { isVerified: false };
@@ -12,9 +12,9 @@ exports.verifyIdPwAndReturnToken = async function ({ id, pw }) {
   const secret = JWT_SECRET;
   const token = jwt.sign({ _id: user._id }, secret, { expiresIn: '1d' });
   return { isVerified: true, token };
-}
+};
 
-exports.verifyToken = function ({ token }) {
+exports.verifyToken = ({ token }) => {
   try {
     const secret = JWT_SECRET;
     const { _id } = jwt.verify(token, secret);
@@ -22,4 +22,4 @@ exports.verifyToken = function ({ token }) {
   } catch (err) {
     return { isVerified: false };
   }
-}
+};

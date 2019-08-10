@@ -8,7 +8,7 @@ exports.sendMessage = async (req, res, next) => {
   } catch (err) {
     res.json(format.response.successFalse(err, err.message));
   }
-}
+};
 
 exports.toggleUseDb = async (req, res, next) => {
   const { type } = req.body;
@@ -18,7 +18,7 @@ exports.toggleUseDb = async (req, res, next) => {
   } catch (err) {
     res.json(format.response.successFalse(err, err.message));
   }
-}
+};
 
 exports.getUseDbState = async (req, res, next) => {
   try {
@@ -27,4 +27,4 @@ exports.getUseDbState = async (req, res, next) => {
   } catch (err) {
     res.json(format.response.successFalse(err, err.message));
   }
-}
+};

@@ -6,16 +6,16 @@ const HuMenus = require('../models/huMenus');
 
 const { format } = require('../utils');
 
-exports.getMediMenus = async function (req, res, next) {
+exports.getMediMenus = async (req, res, next) => {
   try {
     const result = await MediMenus.getLatestMenu();
     res.json(format.response.successTrue(result));
   } catch (err) {
     res.json(format.response.successFalse(err, err.message));
   }
-}
+};
 
-exports.getJinsuMenus = async function (req, res, next) {
+exports.getJinsuMenus = async (req, res, next) => {
   try {
     const result = await JinsuMenus.getLatestMenu();
     res.json(format.response.successTrue(result));
@@ -24,7 +24,7 @@ exports.getJinsuMenus = async function (req, res, next) {
   }
 };
 
-exports.getStudentHallMenus = async function (req, res, next) {
+exports.getStudentHallMenus = async (req, res, next) => {
   try {
     const result = await StudentHallMenus.getLatestMenu();
     res.json(format.response.successTrue(result));
@@ -33,7 +33,7 @@ exports.getStudentHallMenus = async function (req, res, next) {
   }
 };
 
-exports.getJungdamMenus = async function (req, res, next) {
+exports.getJungdamMenus = async (req, res, next) => {
   try {
     const result = await JungdamMenus.getLatestMenu();
     res.json(format.response.successTrue(result));
@@ -42,7 +42,7 @@ exports.getJungdamMenus = async function (req, res, next) {
   }
 };
 
-exports.getHuMenus = async function (req, res, next) {
+exports.getHuMenus = async (req, res, next) => {
   try {
     const result = await HuMenus.getLatestMenu();
     res.json(format.response.successTrue(result));
