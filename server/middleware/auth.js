@@ -12,7 +12,7 @@ exports.check = () => async (req, res, next) => {
   const user = await Users.findBy_id({ _id });
   req.userData = user;
   next();
-}
+};
 
 exports.checkView = () => async (req, res, next) => {
   const token = req.cookies['x-access-token'] || req.query.token;
@@ -23,4 +23,4 @@ exports.checkView = () => async (req, res, next) => {
   const user = await Users.findBy_id({ _id });
   req.userData = user;
   next();
-}
+};

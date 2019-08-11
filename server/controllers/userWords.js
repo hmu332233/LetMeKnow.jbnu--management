@@ -1,10 +1,10 @@
 const UserWords = require('../models/userWords');
 const { format } = require('../utils');
 
-exports.search = async function (req, res, next) {
+exports.search = async (req, res, next) => {
   const { user, content } = req.query;
   try {
-    const query = { 
+    const query = {
       id: user,
       content,
     };
@@ -13,9 +13,9 @@ exports.search = async function (req, res, next) {
   } catch (err) {
     res.json(format.response.successFalse(err, err.message));
   }
-}
+};
 
-exports.findByDateAndGroupByContent = async function (req, res, next) {
+exports.findByDateAndGroupByContent = async (req, res, next) => {
   const { start, end } = req.query;
   try {
     const result = await UserWords.findByDateAndGroupByContent({ start, end });
@@ -23,9 +23,9 @@ exports.findByDateAndGroupByContent = async function (req, res, next) {
   } catch (err) {
     res.json(format.response.successFalse(err, err.message));
   } 
-}
+};
 
-exports.findByDate = async function (req, res, next) {
+exports.findByDate = async (req, res, next) => {
   const { start, end } = req.query;
   try {
     const result = await UserWords.findByDate({ start, end });
@@ -33,9 +33,9 @@ exports.findByDate = async function (req, res, next) {
   } catch (err) {
     res.json(format.response.successFalse(err, err.message));
   }
-}
+};
 
-exports.create = async function (req, res, next) {
+exports.create = async (req, res, next) => {
   const { id, content } = req.body;
   try {
     const result = await UserWords.create({ id, content });
@@ -43,4 +43,4 @@ exports.create = async function (req, res, next) {
   } catch (err) {
     res.json(format.response.successFalse(err, err.message));
   }
-}
+};

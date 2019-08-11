@@ -3,7 +3,7 @@ const service = require('../services');
 
 const { format, error } = require('../utils');
 
-exports.create = async function (req, res, next) {
+exports.create = async (req, res, next) => {
   const { id, pw, level } = req.body;
   try {
     const isSuccess = await Users.create({ id, pw, level });
@@ -11,9 +11,9 @@ exports.create = async function (req, res, next) {
   } catch (err) {
     res.json(format.response.successFalse(err, err.message));
   }
-}
+};
 
-exports.signin = async function (req, res, next) {
+exports.signin = async (req, res, next) => {
   const { id, pw } = req.body;
   try {
     const { isVerified, token } = await service.auth.verifyIdPwAndReturnToken({ id, pw });
@@ -25,4 +25,4 @@ exports.signin = async function (req, res, next) {
   } catch (err) {
     res.json(format.response.successFalse(err, err.message));
   }
-}
+};
