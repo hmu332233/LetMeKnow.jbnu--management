@@ -8,6 +8,15 @@ const CONSTANTS = {};
  *  dinner {Array} 한 주 동안의 저녁 정보
  */
 const schema = mongoose.Schema({
+  breakfast: [
+    {
+      place: String,
+      week: String,
+      time: String,
+      category: String,
+      menus: String,
+    },
+  ],
   lunch: [
     {
       place: String,
