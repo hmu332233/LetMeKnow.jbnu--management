@@ -3,30 +3,30 @@ const mongoose = require('mongoose');
 const CONSTANTS = {
   LEVEL: {
     ADMIN: 'admin',
-    BASIC: 'basic'
+    BASIC: 'basic',
   },
 };
 
 // schema
 const schema = mongoose.Schema({
-  id: { 
+  id: {
     type: String,
-    required:[true, 'User - id is required!'],
-    unique: true
+    required: [true, 'User - id is required!'],
+    unique: true,
   },
-  pw: { 
+  pw: {
     type: String,
-    required:[true, 'User - pw is required!']
+    required: [true, 'User - pw is required!'],
   },
   level: {
     type: String,
-    default: CONSTANTS.LEVEL.BASIC
-  }
+    default: CONSTANTS.LEVEL.BASIC,
+  },
 });
 
 const model = mongoose.model('user', schema);
 
 module.exports = {
   db: { users: model },
-  CONSTANTS
+  CONSTANTS,
 };

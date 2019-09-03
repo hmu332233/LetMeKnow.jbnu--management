@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import PropTypes from 'prop-types';
 import styles from './LoginForm.scss';
 
@@ -7,20 +7,27 @@ import {
   Button,
   FormGroup,
   Label,
-  Input,
   Card,
   CardBody
 } from 'reactstrap';
 
+import Input from 'components/Input';
 import useInput from 'hooks/useInput';
 
 function LoginForm(props) {
   const [id, setId, onChangeId] = useInput();
   const [password, setPassword, onChangePassword] = useInput();
+  const passwordRef = useRef(null);
 
   const handleButtonClick = () => {
     props.buttonClickHandler({ id, password });
   };
+
+  const handleKeyUp = (e) => {
+    if (e.keyCode === 13) {
+      handleButtonClick();
+    }
+  }
 
   return (
     <Card className={classnames(styles.LoginForm, props.className)}>
@@ -33,6 +40,7 @@ function LoginForm(props) {
             id="LoginForm__id"
             value={id}
             onChange={onChangeId}
+            nextInput={passwordRef}
           />
         </FormGroup>
         <FormGroup>
@@ -43,6 +51,8 @@ function LoginForm(props) {
             id="LoginForm__password"
             value={password}
             onChange={onChangePassword}
+            innerRef={passwordRef}
+            onKeyUp={handleKeyUp}
           />
         </FormGroup>
         <Button onClick={handleButtonClick}>로그인</Button>
