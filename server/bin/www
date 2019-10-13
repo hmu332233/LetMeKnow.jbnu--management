@@ -1,0 +1,13 @@
+const path = require('path');
+require('dotenv').config({ path: path.resolve(__dirname, '../.env') });
+
+const app = require('./../app');
+const http = require('http');
+
+const port = process.env.PORT || 3000;
+app.set('port', port);
+
+const server = http.createServer(app);
+server.listen(port, () => {
+  console.log('listening on port:' + port);
+});

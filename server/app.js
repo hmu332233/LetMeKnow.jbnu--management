@@ -5,12 +5,8 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser')
 const middleware = require('./middleware');
 
-const config = require('./configs')
-JWT_SECRET = config.SECRET;
-NODE_ENV = config.NODE_ENV || 'development';
-
 // Database - mongo
-const mongoUrl = config.MONGO_DB;
+const mongoUrl = process.env.MONGO_DB;
 mongoose.Promise = global.Promise;
 mongoose.connect(
   mongoUrl,
@@ -36,7 +32,7 @@ app.use((req, res, next) => {
 });
 
 // 개발용 log
-if (NODE_ENV === 'development') {
+if (process.env.NODE_ENV === 'development') {
   const logger = require('morgan');
   app.use(logger('dev'));
   app.use(function(req, res, next) {
@@ -54,8 +50,4 @@ app.use('/api', require('./routes/api'));
 app.use('/', require('./routes/view'));
 app.use(middleware.error.handle);
 
-// Server
-const port = 3000;
-app.listen(port, () => {
-  console.log('listening on port:' + port);
-});
+module.exports = app;
