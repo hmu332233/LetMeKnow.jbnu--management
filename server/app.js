@@ -54,8 +54,4 @@ app.use('/api', require('./routes/api'));
 app.use('/', require('./routes/view'));
 app.use(middleware.error.handle);
 
-// Server
-const port = 3000;
-app.listen(port, () => {
-  console.log('listening on port:' + port);
-});
+module.exports = app;

@@ -8,7 +8,7 @@
     "prettier": "prettier --config .prettierrc",
     "start": "parcel index.html --public-url ./assets",
     "build": "rm -rf build;parcel build index.html -d build --public-url ./assets",
-    "start-server": "node server/server.js",
+    "start-server": "node server/bin/www",
     "test": "jest --config server/test/config.js"
   },
   "repository": {
