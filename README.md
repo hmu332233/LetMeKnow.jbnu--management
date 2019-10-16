@@ -12,7 +12,7 @@ $ yarn
 - .evn 파일 복사 및 해당 파일 내용 채우기  
   (실행을 위해서는 mongodb가 필수입니다.)
 ```bash
-$ cp .evn.example .evn
+$ cp server/.evn.example server/.evn
 ```
 
 - 서버 실행
