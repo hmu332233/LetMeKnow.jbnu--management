@@ -6,7 +6,7 @@ exports.sendMessage = async (req, res, next) => {
     const result = await botServer.sendMessage({ message });
     res.json(format.response.successTrue(result));
   } catch (err) {
-    res.json(format.response.successFalse(err, err.message));
+    next(err);
   }
 };
 
@@ -16,7 +16,7 @@ exports.toggleUseDb = async (req, res, next) => {
     const result = await botServer.toggleUseDb({ type });
     res.json(format.response.successTrue(result));
   } catch (err) {
-    res.json(format.response.successFalse(err, err.message));
+    next(err);
   }
 };
 
@@ -25,6 +25,6 @@ exports.getUseDbState = async (req, res, next) => {
     const result = await botServer.getUseDbState();
     res.json(format.response.successTrue(result));
   } catch (err) {
-    res.json(format.response.successFalse(err, err.message));
+    next(err);
   }
 };

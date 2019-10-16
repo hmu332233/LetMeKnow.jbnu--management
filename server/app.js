@@ -2,8 +2,8 @@ const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
-const cookieParser = require('cookie-parser')
-const middleware = require('./middleware');
+const cookieParser = require('cookie-parser');
+const createError = require('http-errors');
 
 // Database - mongo
 const mongoUrl = process.env.MONGO_DB;
@@ -48,6 +48,25 @@ if (process.env.NODE_ENV === 'development') {
 
 app.use('/api', require('./routes/api'));
 app.use('/', require('./routes/view'));
-app.use(middleware.error.handle);
+
+// catch 404 and forward to error handler
+app.use((req, res, next) => {
+  next(createError(404));
+});
+
+// error handler
+app.use((err, req, res, next) => {
+  let apiError = err;
+
+  if (!err.status) {
+    apiError = createError(err);
+  }
+
+  // set locals, only providing error in development
+  res.locals.message = apiError.message;
+  res.locals.error = process.env.NODE_ENV === 'development' ? apiError : {};
+
+  return res.status(apiError.status).json({ message: apiError.message });
+});
 
 module.exports = app;

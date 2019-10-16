@@ -11,7 +11,7 @@ exports.getMediMenus = async (req, res, next) => {
     const result = await MediMenus.getLatestMenu();
     res.json(format.response.successTrue(result));
   } catch (err) {
-    res.json(format.response.successFalse(err, err.message));
+    next(err);
   }
 };
 
@@ -20,7 +20,7 @@ exports.getJinsuMenus = async (req, res, next) => {
     const result = await JinsuMenus.getLatestMenu();
     res.json(format.response.successTrue(result));
   } catch (err) {
-    res.json(format.response.successFalse(err, err.message));
+    next(err);
   }
 };
 
@@ -29,7 +29,7 @@ exports.getStudentHallMenus = async (req, res, next) => {
     const result = await StudentHallMenus.getLatestMenu();
     res.json(format.response.successTrue(result));
   } catch (err) {
-    res.json(format.response.successFalse(err, err.message));
+    next(err);
   }
 };
 
@@ -38,7 +38,7 @@ exports.getJungdamMenus = async (req, res, next) => {
     const result = await JungdamMenus.getLatestMenu();
     res.json(format.response.successTrue(result));
   } catch (err) {
-    res.json(format.response.successFalse(err, err.message));
+    next(err);
   }
 };
 
@@ -47,6 +47,6 @@ exports.getHuMenus = async (req, res, next) => {
     const result = await HuMenus.getLatestMenu();
     res.json(format.response.successTrue(result));
   } catch (err) {
-    res.json(format.response.successFalse(err, err.message));
+    next(err);
   }
 };
