@@ -27,7 +27,7 @@ format.axios = {
   error: (err) => ({ 
     name: 'AxiosError', 
     code: err.code, 
-    message: err.Error 
+    message: err.message 
   })
 }
 
