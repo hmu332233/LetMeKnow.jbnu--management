@@ -11,6 +11,5 @@ beforeAll(done => {
 });
 
 afterAll(done => {
-  mongoose.disconnect();
-  return done();
+  mongoose.disconnect(done);
 });

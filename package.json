@@ -9,7 +9,7 @@
     "start": "parcel src/index.html --public-url ./assets",
     "build": "rm -rf build;parcel build src/index.html -d build --public-url ./assets",
     "start-server": "node server/bin/www",
-    "test": "jest --config server/test/config.js"
+    "test": "jest --detectOpenHandles --config server/test/config.js"
   },
   "repository": {
     "type": "git",
