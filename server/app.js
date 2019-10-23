@@ -1,24 +1,9 @@
 const express = require('express');
 const app = express();
-const mongoose = require('mongoose');
+
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const createError = require('http-errors');
-
-// Database - mongo
-const mongoUrl = process.env.MONGO_DB;
-mongoose.Promise = global.Promise;
-mongoose.connect(
-  mongoUrl,
-  { useNewUrlParser: true }
-);
-const db = mongoose.connection;
-db.once('open', () => {
-  console.log('DB connected!');
-});
-db.on('error', err => {
-  console.log('DB ERROR:', err);
-});
 
 // Middlewares
 app.use(cookieParser());

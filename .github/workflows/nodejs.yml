@@ -27,3 +27,5 @@ jobs:
         npm test
       env:
         CI: true
+        MONGO_DB: ${{ secrets.MONGO_DB }}
+        JWT_SECRET: ${{ secrets.JWT_SECRET }}
