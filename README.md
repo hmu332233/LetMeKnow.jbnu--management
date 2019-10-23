@@ -1,21 +1,52 @@
 # 알려줘전북대 관리자, api
 
- 알려줘전북대 관리자 페이지 및 api 서버입니다.
+알려줘전북대 관리자 페이지 및 api 서버입니다.  
+
+알려줘전북대는 다음과 같은 repo들로 관리되고 있습니다.
+- [LetMeKnow.jbnu--ChatBot--](https://github.com/hmu332233/LetMeKnow.jbnu--ChatBot--): 알려줘전북대 메인 서버
+- **[LetMeKnow.jbnu-managemen](https://github.com/hmu332233/LetMeKnow.jbnu-management): 관리자 페이지 및 api 서버**
+- [LetMeKnow.jbnu--lambda](https://github.com/hmu332233/LetMeKnow.jbnu--lambda): 클라우드용 lambda 함수 관리
+- [LetMeKnow.jbnu-bixby](https://github.com/hmu332233/LetMeKnow.jbnu-bixby): 알려줘전북대 빅스비 버전 (개발 중)
+
+## Requirements
+
+- node8 이상
+- mongodb 4.0 이상
+- yarn (optional)
 
 ## Getting Started
 
-- npm 설치
+다음과 같은 순서로 api 서버를 실행할 수 있습니다.  
+
+1. 모듈 설치
 ```bash
 $ yarn
 ```
 
-- .evn 파일 복사 및 해당 파일 내용 채우기  
-  (실행을 위해서는 mongodb가 필수입니다.)
+2. .env 파일 복사
 ```bash
 $ cp server/.evn.example server/.evn
 ```
+3. .env 파일 내용 채워넣기
+  - api 서버 개발시에는 `MONGO_DB`, `NODE_ENV`만 있으면 됩니다.
+  ```
+  NODE_ENV=development
+  MONGO_DB=mongodb://localhost:27017/db # 본인의 mongodb host를 적어주세요.
+  ```
 
-- 서버 실행
+4. 서버 실행
 ```bash
 $ yarn run start-server
 ```
+
+## Testing
+
+다음 명령어로 테스트가 가능합니다.
+```bash
+$ yarn test
+```
+
+## Contribution
+
+- 누구든지 이 프로젝트에 참여할 수 있습니다.
+- 알려줘전북대에 대한 이슈는 [LetMeKnow.jbnu--ChatBot--/issues](https://github.com/hmu332233/LetMeKnow.jbnu--ChatBot--/issues)에 남겨주세요.
