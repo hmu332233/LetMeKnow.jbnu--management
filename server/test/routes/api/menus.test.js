@@ -1,6 +1,9 @@
 const request = require('supertest');
 const app = require('../../../app');
 
+const { setupDB } = require('../../setupDb');
+setupDB();
+
 describe('menus', () => {
   test('medi - status code 200', done => {
     request(app)

@@ -1,6 +1,9 @@
 const request = require('supertest');
 const app = require('../../../app');
 
+const { setupDB } = require('../../setupDb');
+setupDB();
+
 describe('view', () => {
   test('should be 404', done => {
     request(app)
