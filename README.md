@@ -40,11 +40,12 @@ $ yarn run start-server
 ```
 
 ## Testing
-
 다음 명령어로 테스트가 가능합니다.
 ```bash
 $ yarn test
 ```
+[jest](https://jestjs.io/)를 사용하고 있으며,  
+jest의 사용방법은 해당 문서를 참고해주세요.
 
 ## Contribution
 
