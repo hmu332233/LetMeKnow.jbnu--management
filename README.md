@@ -51,3 +51,8 @@ jest의 사용방법은 해당 문서를 참고해주세요.
 
 - 누구든지 이 프로젝트에 참여할 수 있습니다.
 - 알려줘전북대에 대한 이슈는 [LetMeKnow.jbnu--ChatBot--/issues](https://github.com/hmu332233/LetMeKnow.jbnu--ChatBot--/issues)에 남겨주세요.
+
+- 작업 방식은 다음과 같습니다.
+  1. 원하는 issue에 작업을 진행하겠다는 의사를 표시합니다.
+  2. 해당 repo를 fork하고 작업을 진행합니다.
+  3. 작업이 완료되었으면 `develop` 브랜치를 base로 pull request를 보내주세요.
