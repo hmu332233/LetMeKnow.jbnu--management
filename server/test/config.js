@@ -5,5 +5,5 @@ module.exports = {
   verbose: true,
   transform: {},
   testEnvironment: 'node',
-  setupFilesAfterEnv: ['./test/setup.js'],
+  setupFilesAfterEnv: ['./test/setupEnv.js'],
 };
