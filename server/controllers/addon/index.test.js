@@ -1,17 +1,12 @@
 const { setupDB } = require('../../test/setupDb');
 setupDB();
 
+const { mockResponse } = require('../../test/utils');
+
 const QuickReplies = require('../../models/quickReplies');
 
 const controller = {
   addon: require('./index'),
-};
-
-const mockResponse = () => {
-  const res = {};
-  res.status = jest.fn().mockReturnValue(res);
-  res.json = jest.fn().mockReturnValue(res);
-  return res;
 };
 
 describe('controller - addon', () => {
