@@ -26,8 +26,13 @@ describe('models - quizReply', () => {
       expect(quizReplies[0].label).toEqual(mockQuizReply.label);
     });
 
-    test('findByDate - 범위 내의 데이터가 없을 때', async () => {
+    test('findByDate - 범위 내의 데이터가 없을 때 - 이전', async () => {
       const quizReplies = await QuickReplies.findByDate({ date: new Date('2019-11-01') });
+      expect(quizReplies.length).toEqual(0);
+    });
+
+    test('findByDate - 범위 내의 데이터가 없을 때 - 이후', async () => {
+      const quizReplies = await QuickReplies.findByDate({ date: new Date('2020-11-01') });
       expect(quizReplies.length).toEqual(0);
     });
   });
