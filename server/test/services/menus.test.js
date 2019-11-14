@@ -101,7 +101,7 @@ const DUMMY = {
       week: '수',
       time: '석식',
       category: '백반',
-      menus: '참치두부김치찌개\n불맛바베큐바싹불고기\n매콤쟁반자장면\n콩나물양파지짐',
+      menus: '',
     },
     {
       place: '진수당',
@@ -179,7 +179,7 @@ describe('service - menus', () => {
     test('getJinsuMenus', async () => {
       const menu = await service.menus.getJinsuMenus();
       expect(menu.lunch[1].menus).toEqual('등록된 식단이 없습니다.');
-      expect(menu.dinner[1].menus).toEqual('등록된 식단이 없습니다.');
+      expect(menu.dinner[2].menus).toEqual('등록된 식단이 없습니다.');
 
       expect(menu.lunch.every(menu => menu.menus !== '')).toEqual(true);
       expect(menu.dinner.every(menu => menu.menus !== '')).toEqual(true);
