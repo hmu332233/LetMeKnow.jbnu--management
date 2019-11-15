@@ -6,7 +6,7 @@ module.exports = {
   setupDB() {
     // Connect to Mongoose
     beforeAll(async done => {
-      await mongoose.connect(process.env.MONGO_DB, {
+      await mongoose.connect(process.env.MONGO_DB || process.env.MONGO_URL, {
         useNewUrlParser: true,
         useUnifiedTopology: true,
       });

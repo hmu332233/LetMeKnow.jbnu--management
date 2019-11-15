@@ -5,5 +5,5 @@ module.exports = {
   verbose: true,
   transform: {},
   testEnvironment: 'node',
-  preset: '@shelf/jest-mongodb',
+  setupFilesAfterEnv: ['./test/setupEnv.js'],
 };
