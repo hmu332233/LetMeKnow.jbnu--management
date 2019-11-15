@@ -10,12 +10,15 @@ exports.getMediMenus = async () => {
 		return menu;
 	}
 	else{
-		if(menu.lunch[0].menus == ""){
-			menu.lunch[0].menus = "등록된 식단이 없습니다.";
+		for(var i=0; i<5; i++){
+			if(menu.lunch[i].menus == ""){
+				menu.lunch[i].menus = "등록된 식단이 없습니다.";
+			}
 		}
-
-		if(menu.dinner[0].menus == ""){
-			menu.dinner[0].menus = "등록된 식단이 없습니다.";
+		for(var i=0; i<5; i++){
+			if(menu.dinner[i].menus == ""){
+				menu.dinner[i].menus = "등록된 식단이 없습니다.";
+			}
 		}
 	}
     
@@ -28,12 +31,15 @@ exports.getJinsuMenus = async () => {
 		return menu;
 	}
 	else{
-		if(menu.lunch[0].menus == ""){
-			menu.lunch[0].menus = "등록된 식단이 없습니다.";
+		for(var i=0; i<5; i++){
+			if(menu.lunch[i].menus == ""){
+				menu.lunch[i].menus = "등록된 식단이 없습니다.";
+			}
 		}
-
-		if(menu.dinner[0].menus == ""){
-			menu.dinner[0].menus = "등록된 식단이 없습니다.";
+		for(var i=0; i<5; i++){
+			if(menu.dinner[i].menus == ""){
+				menu.dinner[i].menus = "등록된 식단이 없습니다.";
+			}
 		}
 	}
   return menu;
@@ -45,12 +51,15 @@ exports.getStudentHallMenus = async () => {
 		return menu;
 	}
 	else{
-		if(menu.lunch[0].menus == ""){
-			menu.lunch[0].menus = "등록된 식단이 없습니다.";
+		for(var i=0; i<5; i++){
+			if(menu.lunch[i].menus == ""){
+				menu.lunch[i].menus = "등록된 식단이 없습니다.";
+			}
 		}
-
-		if(menu.dinner[0].menus == ""){
-			menu.dinner[0].menus = "등록된 식단이 없습니다.";
+		for(var i=0; i<5; i++){
+			if(menu.dinner[i].menus == ""){
+				menu.dinner[i].menus = "등록된 식단이 없습니다.";
+			}
 		}
 	}
   return menu;
@@ -62,9 +71,12 @@ exports.getJungdamMenus = async () => {
 		return menu;
 	}
 	else{
-		if(menu.lunch[0].menus == ""){
-			menu.lunch[0].menus = "등록된 식단이 없습니다.";
+		for(var i=0; i<5; i++){
+			if(menu.lunch[i].menus == ""){
+				menu.lunch[i].menus = "등록된 식단이 없습니다.";
+			}
 		}
+		
 	}
   return menu;
 };
@@ -75,14 +87,20 @@ exports.getHuMenus = async () => {
 		return menu;
 	}
 	else{
-		if(menu.breakfast[0].menus == ""){
-			menu.breakfast[0].menus = "등록된 식단이 없습니다.";
+		for(var i=0; i<5; i++){
+			if(menu.breakfast[i].menus == ""){
+				menu.breakfast[i].menus = "등록된 식단이 없습니다.";
+			}
 		}
-		if(menu.lunch[0].menus == ""){
-			menu.lunch[0].menus = "등록된 식단이 없습니다.";
+		for(var i=0; i<5; i++){
+			if(menu.lunch[i].menus == ""){
+				menu.lunch[i].menus = "등록된 식단이 없습니다.";
+			}
 		}
-		if(menu.dinner[0].menus == ""){
-			menu.dinner[0].menus = "등록된 식단이 없습니다.";
+		for(var i=0; i<5; i++){
+			if(menu.dinner[i].menus == ""){
+				menu.dinner[i].menus = "등록된 식단이 없습니다.";
+			}
 		}
 	}
   return menu;
