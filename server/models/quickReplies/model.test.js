@@ -20,7 +20,7 @@ describe('models - quickReply', () => {
     afterAll(async () => {
       await db.quick_replies.deleteMany({});
     });
-  
+
     test('findByDate - 범위 내의 데이터가 있을 때', async () => {
       const quizReplies = await QuickReplies.findByDate({ date: new Date('2019-12-25') });
       expect(quizReplies[0].label).toEqual(mockQuickReply.label);

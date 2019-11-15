@@ -7,14 +7,14 @@ const _ = require('lodash');
   @param {object} originalObject 
   @return {object} null, undefined가 제거된 새로운 object
 */
-exports.cleanObject = (originalObject) => _.pickBy(originalObject, _.identity);
+exports.cleanObject = originalObject => _.pickBy(originalObject, _.identity);
 
-exports.normalizeUserWords = (userWords) => {
+exports.normalizeUserWords = userWords => {
   return userWords.map(userWord => {
     return {
       id: userWord.id,
       content: userWord.content,
-      timestamp: userWord.createdAt
+      timestamp: userWord.createdAt,
     };
   });
-}
+};
