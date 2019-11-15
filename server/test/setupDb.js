@@ -17,7 +17,7 @@ module.exports = {
     // Disconnect Mongoose
     afterAll(async done => {
       const collections = Object.keys(mongoose.connection.collections);
-      
+
       for (const collectionName of collections) {
         const collection = mongoose.connection.collections[collectionName];
         await collection.deleteMany();

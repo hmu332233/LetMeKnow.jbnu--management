@@ -5,12 +5,24 @@
   "main": "server.js",
   "scripts": {
     "eslint": "eslint --ignore-path .gitignore",
-    "prettier": "prettier --config .prettierrc",
+    "prettier": "prettier --write --config .prettierrc 'server/**/*.js'",
     "start": "parcel src/index.html --public-url ./assets",
     "build": "rm -rf build;parcel build src/index.html -d build --public-url ./assets",
     "start-server": "node server/bin/www",
     "test": "jest --detectOpenHandles --forceExit --config server/test/config.js",
     "test:env": "jest --detectOpenHandles --forceExit --config server/test/config.env.js"
+  },
+  "husky": {
+    "hooks": {
+      "pre-push": "yarn test",
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.js": [
+      "prettier --write --config .prettierrc",
+      "git add"
+    ]
   },
   "repository": {
     "type": "git",
@@ -35,7 +47,9 @@
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-prettier": "^3.1.0",
     "eslint-plugin-react": "^7.14.2",
+    "husky": "^3.0.9",
     "jest": "^24.9.0",
+    "lint-staged": "^9.4.3",
     "morgan": "^1.9.1",
     "node-sass": "^4.9.4",
     "parcel-bundler": "^1.6.2",
