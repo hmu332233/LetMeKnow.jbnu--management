@@ -15,6 +15,7 @@
 - node8 이상
 - mongodb 4.0 이상
 - yarn (optional)
+- git 2.13.0 이상 (optional)
 
 ## Getting Started
 
@@ -48,6 +49,10 @@ $ yarn test
 ```
 [jest](https://jestjs.io/)를 사용하고 있으며,  
 jest의 사용방법은 해당 문서를 참고해주세요.
+
+## Code Format
+prettier가 git hooks를 통해 commit 단계에서 실행됩니다.
+단, 이 기능은 git `2.13.0` 이상이여야합니다.
 
 ## Contribution
 

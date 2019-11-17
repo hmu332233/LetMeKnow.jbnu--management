@@ -22,10 +22,8 @@ jobs:
         node-version: ${{ matrix.node-version }}
     - name: npm install, build, and test
       run: |
-        npm install
-        npm run build --if-present
-        npm test
+        yarn
+        yarn build
+        yarn test
       env:
         CI: true
-        MONGO_DB: ${{ secrets.MONGO_DB }}
-        JWT_SECRET: ${{ secrets.JWT_SECRET }}

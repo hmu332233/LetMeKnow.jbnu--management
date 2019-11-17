@@ -10,9 +10,9 @@ exports.CONSTANTS = {
     HU: 'hu',
     JUNGDAM: 'jungdam',
     JINSU: 'jinsu',
-    STUDENT_HALL: 'student_hall'
-  }
-}
+    STUDENT_HALL: 'student_hall',
+  },
+};
 
 exports.sendMessage = async ({ message }) => {
   try {
@@ -20,16 +20,16 @@ exports.sendMessage = async ({ message }) => {
       method: 'post',
       url: `${BOT_SERVER_HOST}/message`,
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
       },
       data: {
         userRequest: {
           user: {
-            id: 'management_test_user'
+            id: 'management_test_user',
           },
-          utterance: message
-        }
-      }
+          utterance: message,
+        },
+      },
     });
     return res.data;
   } catch (err) {
@@ -43,14 +43,14 @@ exports.toggleUseDb = async ({ type }) => {
       method: 'put',
       url: `${BOT_SERVER_HOST}/api/menu_domitory/${type}/use_db`,
       headers: {
-        'Content-Type': 'application/json'
-      }
+        'Content-Type': 'application/json',
+      },
     });
     return res.data;
   } catch (err) {
     throw format.axios.error(err);
   }
-}
+};
 
 exports.getUseDbState = async () => {
   try {
@@ -58,11 +58,11 @@ exports.getUseDbState = async () => {
       method: 'get',
       url: `${BOT_SERVER_HOST}/api/menu_domitory/use_db`,
       headers: {
-        'Content-Type': 'application/json'
-      }
+        'Content-Type': 'application/json',
+      },
     });
     return res.data.result;
   } catch (err) {
     throw format.axios.error(err);
   }
-}
+};

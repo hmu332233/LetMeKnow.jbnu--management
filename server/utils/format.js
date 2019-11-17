@@ -1,34 +1,34 @@
 const format = {};
 
 format.response = {
-  successTrue: (data) => ({
+  successTrue: data => ({
     success: true,
     message: null,
     errors: null,
-    data: data
+    data: data,
   }),
   successFalse: (err, message) => ({
     success: false,
     message: message,
     errors: err,
-    data: null
-  })
-}
+    data: null,
+  }),
+};
 
 format.mongo = {
-  error: (err) => ({ 
-    name: 'MongoError', 
-    code: err.code, 
-    message: err.errmsg 
-  })
-}
+  error: err => ({
+    name: 'MongoError',
+    code: err.code,
+    message: err.errmsg,
+  }),
+};
 
 format.axios = {
-  error: (err) => ({ 
-    name: 'AxiosError', 
-    code: err.code, 
-    message: err.message 
-  })
-}
+  error: err => ({
+    name: 'AxiosError',
+    code: err.code,
+    message: err.message,
+  }),
+};
 
 module.exports = format;

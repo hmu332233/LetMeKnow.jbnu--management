@@ -11,7 +11,7 @@ describe('view', () => {
       .then(res => {
         expect(res.statusCode).toBe(404);
         done();
-      })
+      });
   });
   test('should be 200', done => {
     request(app)

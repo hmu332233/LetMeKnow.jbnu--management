@@ -16,4 +16,3 @@ exports.add = ({ label, action = CONSTANTS.ACTION.MESSAGE, messageText, start, e
 exports.deleteOne = ({ _id }) => {
   return db.quick_replies.deleteOne({ _id });
 };
-

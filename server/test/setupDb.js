@@ -6,7 +6,7 @@ module.exports = {
   setupDB() {
     // Connect to Mongoose
     beforeAll(async done => {
-      await mongoose.connect(process.env.MONGO_DB, {
+      await mongoose.connect(process.env.MONGO_DB || process.env.MONGO_URL, {
         useNewUrlParser: true,
         useUnifiedTopology: true,
       });
@@ -17,7 +17,7 @@ module.exports = {
     // Disconnect Mongoose
     afterAll(async done => {
       const collections = Object.keys(mongoose.connection.collections);
-      
+
       for (const collectionName of collections) {
         const collection = mongoose.connection.collections[collectionName];
         await collection.deleteMany();
