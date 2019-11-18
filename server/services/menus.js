@@ -4,7 +4,7 @@ const StudentHallMenus = require('../models/studentHallMenus');
 const JungdamMenus = require('../models/jungdamMenus');
 const HuMenus = require('../models/huMenus');
 
-const RedesignMenu = meals => meals.map(meal => ({ ...meal, menus: meal.menus || '등록된 식단이 없습니다.' }));
+const redesignMenu = meals => meals.map(meal => ({ ...meal, menus: meal.menus || '등록된 식단이 없습니다.' }));
 
 exports.getMediMenus = async () => {
   const menu = await MediMenus.getLatestMenu();
@@ -13,8 +13,8 @@ exports.getMediMenus = async () => {
     return null;
   }
 
-  menu.lunch = RedesignMenu(menu.lunch);
-  menu.dinner = RedesignMenu(menu.dinner);
+  menu.lunch = redesignMenu(menu.lunch);
+  menu.dinner = redesignMenu(menu.dinner);
 
   return menu;
 };
@@ -26,8 +26,8 @@ exports.getJinsuMenus = async () => {
     return null;
   }
 
-  menu.lunch = RedesignMenu(menu.lunch);
-  menu.dinner = RedesignMenu(menu.dinner);
+  menu.lunch = redesignMenu(menu.lunch);
+  menu.dinner = redesignMenu(menu.dinner);
 
   return menu;
 };
@@ -39,8 +39,8 @@ exports.getStudentHallMenus = async () => {
     return null;
   }
 
-  menu.lunch = RedesignMenu(menu.lunch);
-  menu.dinner = RedesignMenu(menu.dinner);
+  menu.lunch = redesignMenu(menu.lunch);
+  menu.dinner = redesignMenu(menu.dinner);
 
   return menu;
 };
@@ -52,7 +52,7 @@ exports.getJungdamMenus = async () => {
     return null;
   }
 
-  menu.lunch = RedesignMenu(menu.lunch);
+  menu.lunch = redesignMenu(menu.lunch);
 
   return menu;
 };
@@ -64,9 +64,9 @@ exports.getHuMenus = async () => {
     return null;
   }
 
-  menu.breakfast = RedesignMenu(menu.breakfast);
-  menu.lunch = RedesignMenu(menu.lunch);
-  menu.dinner = RedesignMenu(menu.dinner);
+  menu.breakfast = redesignMenu(menu.breakfast);
+  menu.lunch = redesignMenu(menu.lunch);
+  menu.dinner = redesignMenu(menu.dinner);
 
   return menu;
 };
