@@ -1,6 +1,6 @@
 # 알려줘전북대 관리자, api
 
-[![Build Status](https://travis-ci.org/hmu332233/LetMeKnow.jbnu-management.svg?branch=develop)](https://travis-ci.org/hmu332233/LetMeKnow.jbnu--management)
+[![Build Status](https://travis-ci.org/hmu332233/LetMeKnow.jbnu--management.svg?branch=develop)](https://travis-ci.org/hmu332233/LetMeKnow.jbnu--management)
 
 알려줘전북대 관리자 페이지 및 api 서버입니다.  
 
