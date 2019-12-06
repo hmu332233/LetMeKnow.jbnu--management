@@ -15,6 +15,7 @@ function UserWordTable(props) {
             key={userWord.content}
             content={userWord.content}
             count={userWord.count}
+            block={userWord.block}
             lastUserId={userWord.lastUserId}
             lastTimestamp={userWord.lastTimestamp}
           />
