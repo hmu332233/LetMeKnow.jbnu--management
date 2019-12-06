@@ -22,6 +22,7 @@ function UserWordTableItem(props) {
     <tr className={classnames(styles.UserWordTableItem, isLink && styles.clickable)} onClick={handleClick}>
       <th>{props.content} ({props.count})</th>
       <th className={styles.UserWordTableItem__date}>{moment(props.lastTimestamp).calendar()}</th>
+      <th className={styles.UserWordTableItem__userId}>{props.block}</th>
       <th className={styles.UserWordTableItem__userId}>{props.lastUserId}</th>
     </tr>
     <UserWordResultCollapse isOpen={isOpenCollapse} sendingMessage={props.content} />
@@ -32,14 +33,16 @@ function UserWordTableItem(props) {
 UserWordTableItem.propTypes = {
   content: PropTypes.string,
   count: PropTypes.number,
+  block: PropTypes.string,
   lastUserId: PropTypes.string,
   lastTimestamp: PropTypes.number
 };
 UserWordTableItem.defaultProps = {
   content: '',
   count: 0,
+  block: '',
   lastUserId: '',
-  lastTimestamp: ''
+  lastTimestamp: '',
 };
 
 export default React.memo(UserWordTableItem);
