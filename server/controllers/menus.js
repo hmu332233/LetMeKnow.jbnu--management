@@ -1,52 +1,47 @@
-const MediMenus = require('../models/mediMenus');
-const JinsuMenus = require('../models/jinsuMenus');
-const StudentHallMenus = require('../models/studentHallMenus');
-const JungdamMenus = require('../models/jungdamMenus');
-const HuMenus = require('../models/huMenus');
-
+const service = require('../services');
 const { format } = require('../utils');
 
 exports.getMediMenus = async (req, res, next) => {
   try {
-    const result = await MediMenus.getLatestMenu();
+    const result = await service.menus.getMediMenus();
     res.json(format.response.successTrue(result));
   } catch (err) {
-    res.json(format.response.successFalse(err, err.message));
+    next(err);
   }
 };
 
 exports.getJinsuMenus = async (req, res, next) => {
   try {
-    const result = await JinsuMenus.getLatestMenu();
+    const result = await service.menus.getJinsuMenus();
     res.json(format.response.successTrue(result));
   } catch (err) {
-    res.json(format.response.successFalse(err, err.message));
+    next(err);
   }
 };
 
 exports.getStudentHallMenus = async (req, res, next) => {
   try {
-    const result = await StudentHallMenus.getLatestMenu();
+    const result = await service.menus.getStudentHallMenus();
     res.json(format.response.successTrue(result));
   } catch (err) {
-    res.json(format.response.successFalse(err, err.message));
+    next(err);
   }
 };
 
 exports.getJungdamMenus = async (req, res, next) => {
   try {
-    const result = await JungdamMenus.getLatestMenu();
+    const result = await service.menus.getJungdamMenus();
     res.json(format.response.successTrue(result));
   } catch (err) {
-    res.json(format.response.successFalse(err, err.message));
+    next(err);
   }
 };
 
 exports.getHuMenus = async (req, res, next) => {
   try {
-    const result = await HuMenus.getLatestMenu();
+    const result = await service.menus.getHuMenus();
     res.json(format.response.successTrue(result));
   } catch (err) {
-    res.json(format.response.successFalse(err, err.message));
+    next(err);
   }
 };

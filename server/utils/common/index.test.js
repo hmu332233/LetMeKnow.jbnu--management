@@ -1,4 +1,4 @@
-const common = require('../../utils/common');
+const common = require('./index');
 
 describe('common', () => {
   describe('cleanObject', () => {

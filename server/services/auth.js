@@ -9,14 +9,14 @@ exports.verifyIdPwAndReturnToken = async ({ id, pw }) => {
   if (!isVerified) {
     return { isVerified: false };
   }
-  const secret = JWT_SECRET;
+  const secret = process.env.JWT_SECRET;
   const token = jwt.sign({ _id: user._id }, secret, { expiresIn: '1d' });
   return { isVerified: true, token };
 };
 
 exports.verifyToken = ({ token }) => {
   try {
-    const secret = JWT_SECRET;
+    const secret = process.env.JWT_SECRET;
     const { _id } = jwt.verify(token, secret);
     return { isVerified: true, _id };
   } catch (err) {

@@ -1,28 +1,9 @@
 const express = require('express');
 const app = express();
-const mongoose = require('mongoose');
+
 const bodyParser = require('body-parser');
-const cookieParser = require('cookie-parser')
-const middleware = require('./middleware');
-
-const config = require('./configs')
-JWT_SECRET = config.SECRET;
-NODE_ENV = config.NODE_ENV || 'development';
-
-// Database - mongo
-const mongoUrl = config.MONGO_DB;
-mongoose.Promise = global.Promise;
-mongoose.connect(
-  mongoUrl,
-  { useNewUrlParser: true }
-);
-const db = mongoose.connection;
-db.once('open', () => {
-  console.log('DB connected!');
-});
-db.on('error', err => {
-  console.log('DB ERROR:', err);
-});
+const cookieParser = require('cookie-parser');
+const createError = require('http-errors');
 
 // Middlewares
 app.use(cookieParser());
@@ -36,7 +17,7 @@ app.use((req, res, next) => {
 });
 
 // 개발용 log
-if (NODE_ENV === 'development') {
+if (process.env.NODE_ENV === 'development') {
   const logger = require('morgan');
   app.use(logger('dev'));
   app.use(function(req, res, next) {
@@ -52,10 +33,29 @@ if (NODE_ENV === 'development') {
 
 app.use('/api', require('./routes/api'));
 app.use('/', require('./routes/view'));
-app.use(middleware.error.handle);
 
-// Server
-const port = 3000;
-app.listen(port, () => {
-  console.log('listening on port:' + port);
+// catch 404 and forward to error handler
+app.use((req, res, next) => {
+  next(createError(404));
 });
+
+// error handler
+app.use((err, req, res, next) => {
+  let apiError = err;
+
+  if (err.name === 'ValidationError') {
+    apiError = createError(400, err);
+  }
+
+  if (!err.status) {
+    apiError = createError(err);
+  }
+
+  // set locals, only providing error in development
+  res.locals.message = apiError.message;
+  res.locals.error = process.env.NODE_ENV === 'development' ? apiError : {};
+
+  return res.status(apiError.status).json({ message: apiError.message });
+});
+
+module.exports = app;

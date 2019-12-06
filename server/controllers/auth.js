@@ -9,7 +9,7 @@ exports.create = async (req, res, next) => {
     const isSuccess = await Users.create({ id, pw, level });
     res.json(format.response.successTrue(isSuccess));
   } catch (err) {
-    res.json(format.response.successFalse(err, err.message));
+    next(err);
   }
 };
 
@@ -23,6 +23,6 @@ exports.signin = async (req, res, next) => {
     res.cookie('x-access-token', token);
     res.json(format.response.successTrue(token));
   } catch (err) {
-    res.json(format.response.successFalse(err, err.message));
+    next(err);
   }
 };

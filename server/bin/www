@@ -1,0 +1,29 @@
+const path = require('path');
+require('dotenv').config({ path: path.resolve(__dirname, '../.env') });
+
+const app = require('./../app');
+const http = require('http');
+const mongoose = require('mongoose');
+
+// Database - mongo
+const mongoUrl = process.env.MONGO_DB;
+mongoose.Promise = global.Promise;
+mongoose.connect(
+  mongoUrl,
+  { useNewUrlParser: true }
+);
+const db = mongoose.connection;
+db.once('open', () => {
+  console.log('DB connected!');
+});
+db.on('error', err => {
+  console.log('DB ERROR:', err);
+});
+
+const port = process.env.PORT || 3000;
+app.set('port', port);
+
+const server = http.createServer(app);
+server.listen(port, () => {
+  console.log('listening on port:' + port);
+});
