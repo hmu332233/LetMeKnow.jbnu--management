@@ -18,7 +18,7 @@ exports.sendMessage = async ({ message }) => {
   try {
     const res = await axios({
       method: 'post',
-      url: `${BOT_SERVER_HOST}/api/v1/kakao/message`,
+      url: `${BOT_SERVER_HOST}/message`,
       headers: {
         'Content-Type': 'application/json',
       },
