@@ -11,7 +11,7 @@ import UserWordResultCollapse from 'containers/UserWordResultCollapse';
 
 function UserWordTableItem(props) {
   const [isOpenCollapse, toggle] = useToggle(false);
-  const isLink = props.content.includes('http://');
+  const isLink = props.utterance.includes('http://');
   const handleClick = () => {
     isLink && window.open(props.content, '_blank');
     toggle();
@@ -20,7 +20,8 @@ function UserWordTableItem(props) {
   return (
     <React.Fragment>
     <tr className={classnames(styles.UserWordTableItem, isLink && styles.clickable)} onClick={handleClick}>
-      <th>{props.content} ({props.count})</th>
+      <th>{props.utterance} ({props.count})</th>
+      <th className={styles.UserWordTableItem__userId}>{props.context}</th>
       <th className={styles.UserWordTableItem__date}>{moment(props.lastTimestamp).calendar()}</th>
       <th className={styles.UserWordTableItem__userId}>{props.block}</th>
       <th className={styles.UserWordTableItem__userId}>{props.lastUserId}</th>
@@ -31,14 +32,16 @@ function UserWordTableItem(props) {
 }
 
 UserWordTableItem.propTypes = {
-  content: PropTypes.string,
+  utterance: PropTypes.string,
+  context: PropTypes.string,
   count: PropTypes.number,
   block: PropTypes.string,
   lastUserId: PropTypes.string,
   lastTimestamp: PropTypes.number
 };
 UserWordTableItem.defaultProps = {
-  content: '',
+  utterance: '',
+  context: '',
   count: 0,
   block: '',
   lastUserId: '',

@@ -12,8 +12,9 @@ function UserWordTable(props) {
       <tbody>
         {props.userWords.map(userWord => (
           <UserWordTableItem
-            key={userWord.content}
-            content={userWord.content}
+            key={userWord.context}
+            utterance={userWord.utterance}
+            context={userWord.context}
             count={userWord.count}
             block={userWord.block}
             lastUserId={userWord.lastUserId}
@@ -28,10 +29,12 @@ function UserWordTable(props) {
 UserWordTable.propTypes = {
   userWords: PropTypes.arrayOf(
     PropTypes.shape({
-      content: PropTypes.string,
+      utterance: PropTypes.string,
+      context: PropTypes.string,
+      block: PropTypes.string,
       count: PropTypes.number,
       lastUserId: PropTypes.string,
-      lastTimestamp: PropTypes.number
+      lastTimestamp: PropTypes.number,
     })
   )
 };
