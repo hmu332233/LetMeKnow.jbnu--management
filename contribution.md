@@ -77,6 +77,6 @@ $ yarn test
 
 8. 모든 준비가 완료되었으니 개발을 시작합니다.
 
-[jest](https://jestjs.io/)를 사용하고 있으며,  
+추가로 테스트는 [jest](https://jestjs.io/)를 사용하고 있으며,  
 jest의 사용방법은 해당 문서를 참고해주시면됩니다.
 
