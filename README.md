@@ -1,6 +1,6 @@
 # 알려줘전북대 관리자, api
 
-[![Build Status](https://travis-ci.org/hmu332233/LetMeKnow.jbnu-management.svg?branch=develop)](https://travis-ci.org/hmu332233/LetMeKnow.jbnu-management)
+[![Build Status](https://travis-ci.org/hmu332233/LetMeKnow.jbnu--management.svg?branch=develop)](https://travis-ci.org/hmu332233/LetMeKnow.jbnu--management)
 
 알려줘전북대 관리자 페이지 및 api 서버입니다.  
 
@@ -62,3 +62,4 @@ prettier가 git hooks를 통해 commit 단계에서 실행됩니다.
   2. 해당 repo를 fork하고 작업을 진행합니다.
   3. 작업이 완료되었으면 `develop` 브랜치를 base로 pull request를 보내주세요.
 - 자세한 사항은 [CONTRIBUTION.md](/CONTRIBUTION.md)에서 확인해주세요.
+

@@ -19,7 +19,7 @@
     }
   },
   "lint-staged": {
-    "*.js": [
+    "server/*.js, src/*.jsx": [
       "prettier --write --config .prettierrc",
       "git add"
     ]

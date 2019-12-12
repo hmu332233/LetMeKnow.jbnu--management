@@ -4,6 +4,8 @@ const { db } = require('./info');
 
 const { common, format } = require('../../utils');
 
+const _ = require('lodash');
+
 exports.find = async (query = {}, options, isFilteredByToday) => {
   query = common.cleanObject(query);
 
@@ -78,40 +80,30 @@ exports.findByDateAndGroupByContent = async ({ start, end }) => {
 
   try {
     const userWords = await db.user_words
-      .aggregate([
-        {
-          $match: {
-            createdAt: {
-              $gte: start.toDate(),
-              $lt: end.toDate(),
-            },
-          },
+      .find({
+        createdAt: {
+          $gte: start.toDate(),
+          $lt: end.toDate(),
         },
-        {
-          $sort: {
-            createdAt: 1,
-          },
-        },
-        {
-          $group: {
-            _id: '$content',
-            count: { $sum: 1 },
-            lastUserId: { $last: '$id' },
-            lastTimestamp: { $last: '$createdAt' },
-          },
-        },
-        {
-          $project: {
-            _id: 0,
-            content: '$_id',
-            count: 1,
-            lastUserId: 1,
-            lastTimestamp: 1,
-          },
-        },
-      ])
-      .sort({ count: -1, lastTimestamp: 1 });
-    return userWords;
+      })
+      .sort({ _id: -1 })
+      .lean();
+
+    const result = _(userWords)
+      .groupBy(userWord => userWord.utterance)
+      .map(group => {
+        return {
+          count: group.length,
+          lastUserId: group[0].id,
+          lastTimestamp: group[0].createdAt,
+          content: group[0].utterance,
+          block: group[0].block.name,
+        };
+      })
+      .orderBy(['count', 'lastTimestamp'], ['desc', 'desc'])
+      .value();
+
+    return result;
   } catch (err) {
     throw format.mongo.error(err);
   }
@@ -134,10 +126,11 @@ exports.findByDate = async ({ start, end }) => {
           $lt: end.toDate(),
         },
       })
+      .select({ id: 1, createdAt: 1 })
       .sort({ createdAt: -1 })
       .lean();
 
-    return common.normalizeUserWords(userWords);
+    return userWords;
   } catch (err) {
     throw format.mongo.error(err);
   }
