@@ -86,7 +86,6 @@ exports.findByDateAndGroupByContent = async ({ start, end }) => {
           $lt: end.toDate(),
         },
       })
-      .sort({ _id: -1 })
       .lean();
 
     const result = _(userWords)
@@ -96,7 +95,8 @@ exports.findByDateAndGroupByContent = async ({ start, end }) => {
           count: group.length,
           lastUserId: group[0].id,
           lastTimestamp: group[0].createdAt,
-          content: group[0].utterance,
+          utterance: group[0].utterance,
+          context: group[0].context,
           block: group[0].block.name,
         };
       })

@@ -32,7 +32,7 @@ class UserWordResultCollapse extends React.Component {
         if (res.data.success) {
           this.setState({ 
             isLoading: false,
-            message: res.data.data.template.outputs[0].simpleText.text
+            message: res.data.data,
           });
         } else {
           this.setState({ 

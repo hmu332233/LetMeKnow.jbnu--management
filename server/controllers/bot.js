@@ -4,7 +4,8 @@ exports.sendMessage = async (req, res, next) => {
   const { message } = req.body;
   try {
     const result = await botServer.sendMessage({ message });
-    res.json(format.response.successTrue(result));
+    const text = result.template.outputs[0].simpleText.text;
+    res.json(format.response.successTrue(text));
   } catch (err) {
     next(err);
   }
