@@ -26,7 +26,7 @@ function UserWordTableItem(props) {
       <th className={styles.UserWordTableItem__userId}>{props.block}</th>
       <th className={styles.UserWordTableItem__userId}>{props.lastUserId}</th>
     </tr>
-    <UserWordResultCollapse isOpen={isOpenCollapse} sendingMessage={props.content} />
+    <UserWordResultCollapse isOpen={isOpenCollapse} sendingMessage={props.context} />
     </React.Fragment>
   );
 }
