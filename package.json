@@ -51,7 +51,7 @@
     "jest": "^24.9.0",
     "lint-staged": "^9.4.3",
     "morgan": "^1.9.1",
-    "node-sass": "^4.9.4",
+    "node-sass": "^4.13.1",
     "parcel-bundler": "^1.6.2",
     "postcss-modules": "^1.1.0",
     "prettier": "^1.18.2",
