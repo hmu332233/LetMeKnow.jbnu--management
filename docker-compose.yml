@@ -1,0 +1,7 @@
+version: '3'
+
+services:
+  help-jbnu--api:
+    image: help-jbnu--api
+    ports:
+      - "13001:3000"
